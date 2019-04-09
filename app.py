@@ -3,7 +3,7 @@ from flask import Flask
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:goodbowie44@myfirstcluster-milxz.mongodb.net/cooking?retryWrites=true')
-mongo = PyMongo(app)
+# mongo = PyMongo(app)
 
 @app.route('/')
 def hello():
