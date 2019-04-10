@@ -15,12 +15,13 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{url_for('recipes')}}">Home</a></li>
-                    <li><a href="badges.html">Account</a></li>
-                    <!--<li><a href="collapsible.html">JavaScript</a></li>-->
+                    <li><a href="{{url_for('register')}}">Create Account</a></li>
+                    <li><a href="#">Sign In</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="{{url_for('recipes')}}">Home</a></li>
-                    <li><a href="badges.html">Account</a></li>
+                    <li><a href="#">Create Account</a></li>
+                    <li><a href="#">Sign In</a></li>
                 </ul>
             </div>
         </nav>
@@ -35,6 +36,7 @@
             $('.collapsible').collapsible();
             $('select').material_select();
             $(".button-collapse").sideNav();
+            $(".sidenav").sidenav();
         });
     </script>
 
