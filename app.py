@@ -32,13 +32,13 @@ def register():
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['username']})
         if existing_user is None:
-            users.insert({'name' : request.form['username'], 'user_country' : request.form['country']})
+            users.insert({'name' : request.form['username'], 'user_country' : request.form['country_name']})
             session['username'] = request.form['username']
             return redirect(url_for('recipes'))
             
         return "That username already exists!"
-            
-    return render_template('create_user.html')
+    return render_template('create_user.html',
+                           countries=mongo.db.countries.find())
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
