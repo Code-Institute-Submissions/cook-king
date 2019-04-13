@@ -2,47 +2,31 @@
 <div class="top-margin">
   <!--<form action="/register" method="POST">-->
   <!--  <label for="uname">Username</label>-->
-  <!--  <input type="text" id="uname" name="username" placeholder="Your user name">-->
-  <!--<select id="user_count" name="country_name">-->
-  <!--              <option value="" disabled selected>Choose Country</option>-->
-                <!--{% for country_name in countries %}-->
-                <!--    <option value="{{country_name.countries}}">{{country_name.countries}}</option>-->
-                <!--{% endfor %}-->
-  <!--            </select>-->
-  <!--  <label for="country">Country</label>-->
-  <!--<select id="country" name="country">-->
-  <!--  <option value="australia">Australia</option>-->
-  <!--  <option value="canada">Canada</option>-->
-  <!--  <option value="usa">USA</option>-->
-  <!--  <input type="submit" value="Submit">-->
-  <!--</form>-->
+  <!--<input type="text" id="uname" name="username" placeholder="Your user name">-->
+  <select id="user_count" name="country_name">
+                <option value="" disabled selected>Choose Country</option>
+                {% for country_name in countries %}
+                    <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>
+                {% endfor %}
+              </select>
+    <label for="country">Country</label>
   <h3>Create User Account</h3>
-  <div class="row">
-    <form action="/register" method="POST" class="col s12">
-      <div class="row">
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="uname" name="username" type="text" required>
-            <label for="icon_prefix">Your Username</label>
-          </div>
-          <div class="input-field col s12">
-            <select id="user_count" name="country_name" required>
-              <option value="" disabled selected>Choose Country</option>
-              {% for count in countries %}
-              <option value="{{count.country_name}}">{{count.country_name}}</option>
-              {% endfor %}
-            </select>
-            <label>Your Country</label>
-          </div>
-        </div>
-        <div class="row">
-          <button class="btn waves-effect blue darken-4" type="submit" name="action">Create Account
-                <i class="material-icons right">account_box</i>
-             </button>
-        </div>
+    <form action="{{url_for('register')}}" method="POST" class="col s12">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="uname" name="username" type="text" required>
+        <label for="icon_prefix">Your Username</label>
+      </div>
+      <div class="input-field col s12">
+        <select id="user_count" name="country_name">
+          <option value="" disabled selected>Choose Country</option>
+            {% for country_name in countries %}
+              <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <button class="btn waves-effect blue darken-4" type="submit" name="action">Create Account
+        <i class="material-icons right">account_box</i>
+      </button>
     </form>
-    </div>
-  </div>
-
   {% endblock %}
