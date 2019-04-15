@@ -1,15 +1,6 @@
 {% extends 'base.html'%} {% block content %}
 <div class="top-margin">
-  <!--<form action="/register" method="POST">-->
-  <!--  <label for="uname">Username</label>-->
-  <!--<input type="text" id="uname" name="username" placeholder="Your user name">-->
-  <select id="user_count" name="country_name">
-                <option value="" disabled selected>Choose Country</option>
-                {% for country_name in countries %}
-                    <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>
-                {% endfor %}
-              </select>
-    <label for="country">Country</label>
+
   <h3>Create User Account</h3>
     <form action="{{url_for('register')}}" method="POST" class="col s12">
       <div class="input-field col s12">
