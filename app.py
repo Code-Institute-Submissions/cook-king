@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:neBvdPLuMYyDxkNaf@cluster0-milxz.mongodb.net/test?retryWrites=true')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:zqdtjBMRmkAtPWhe@cluster0-milxz.mongodb.net/test?retryWrites=true')
 mongo = PyMongo(app)
 
 class BaseObject(object):
