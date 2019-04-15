@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:gooddoug94@myfirstcluster-milxz.mongodb.net/cooking?retryWrites=true')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:frqJu2XcY7yyrtAE@myfirstcluster-milxz.mongodb.net/cooking?retryWrites=true')
 mongo = PyMongo(app)
 
 class BaseObject(object):
@@ -16,7 +16,7 @@ def recipes():
         return 'You are logged in as ' + session['username']
     return render_template("recipes.html", 
                            tasks=mongo.db.recipes.find())
-    
+     
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     users = mongo.db.users
