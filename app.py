@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:frqJu2XcY7yyrtAE@myfirstcluster-milxz.mongodb.net/cooking?retryWrites=true')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:neBvdPLuMYyDxkNaf@cluster0-milxz.mongodb.net/test?retryWrites=true')
 mongo = PyMongo(app)
 
 class BaseObject(object):
@@ -36,7 +36,7 @@ def register():
             session['username'] = request.form['username']
             return redirect(url_for('recipes'))
             
-        return "That username already exists!"
+        # return "That username already exists!"
     return render_template('create_user.html',
                            countries=mongo.db.countries.find())
     
