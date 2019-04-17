@@ -1,32 +1,31 @@
 {% extends 'base.html'%} {% block content %}
-<div class="header">
-  <div class="top-margin">
-    <h3>Create User Account</h3>
+<div class="header top-margin">
+  <div class="center-hor">
+    <h1>Create User Account</h>
   </div>
-  <div class="main">
-    
-      <form action="{{url_for('register')}}" method="POST" class="col s12">
-        <div class="input-field col s12">
-          
-          <input id="uname" name="username" type="text" required>
-          
-        </div>
-        
-    
-      <div class="input-field col s12">
-        <select name="country_name">
+</div>
+<div class="main">
+  <form action="{{url_for('register')}}" method="POST" class="col-12 center-hor">
+    <div class="row">
+      <div class="form-group">
+        <label for="uname">Your Username</label>
+        <input id="uname" name="username" type="text" class="form-control form-control-lg" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group">
+         <label for="country">Your Country</label>
+        <select id="coutnry" name="country_name" class="form-control form-control-lg">
             <option value="" disabled selected>Choose Country</option>
             {% for country_name in countries %}
               <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>
             {% endfor %}
           </select>
       </div>
-      
-      
-  
-    
-      <button  type="submit">Create Account</button>
-   
-    </form>
-  </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+    </div>
+  </form>
+
   {% endblock %}

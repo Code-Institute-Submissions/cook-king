@@ -1,5 +1,5 @@
 .top-margin {
-    margin-top: 20px;
+    margin-top: 15em;
 }
 
 .logo {
@@ -7,5 +7,6 @@
 }
 
 .center-hor {
-   margin: 0 auto;
+    margin: auto;
+    width: 50%;
 }
