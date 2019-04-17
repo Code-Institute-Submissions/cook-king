@@ -5,3 +5,7 @@
 .logo {
     height: 55px;
 }
+
+.center-hor {
+   margin: 0 auto;
+}

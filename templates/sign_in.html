@@ -1,7 +1,17 @@
 {% extends 'base.html'%} {% block content %}
-<div class="top-margin">
-  <form action="{{url_for('login')}}" methods="POST">
-    <input type="text" id="uname" name="username" placeholder="Your user name">
-    <input type="submit" value="Sign In">
-  </form>
-{% endblock %}
+<div class="header">
+  <div class="top-margin">
+    <h3>Sign In</h3>
+  </div>
+  <div class="main">
+    <div class="row">
+      <form action="{{url_for('login')}}" method="POST" class="col s12">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="uname" name="username" type="text" required>
+          <label for="icon_prefix">Your Username</label>
+        </div>
+    </div>
+    </form>
+  </div>
+  {% endblock %}

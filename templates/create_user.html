@@ -1,22 +1,32 @@
 {% extends 'base.html'%} {% block content %}
-<div class="top-margin">
-  <h3>Create User Account</h3>
-    <form action="{{url_for('register')}}" method="POST" class="col s12">
+<div class="header">
+  <div class="top-margin">
+    <h3>Create User Account</h3>
+  </div>
+  <div class="main">
+    
+      <form action="{{url_for('register')}}" method="POST" class="col s12">
+        <div class="input-field col s12">
+          
+          <input id="uname" name="username" type="text" required>
+          
+        </div>
+        
+    
       <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="uname" name="username" type="text" required>
-        <label for="icon_prefix">Your Username</label>
-      </div>
-      <div class="input-field col s12">
-        <select id="user_count" name="country_name">
-          <option value="" disabled selected>Choose Country</option>
+        <select name="country_name">
+            <option value="" disabled selected>Choose Country</option>
             {% for country_name in countries %}
               <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>
             {% endfor %}
-        </select>
+          </select>
       </div>
-      <button class="btn waves-effect blue darken-4" type="submit" name="action">Create Account
-        <i class="material-icons right">account_box</i>
-      </button>
+      
+      
+  
+    
+      <button  type="submit">Create Account</button>
+   
     </form>
+  </div>
   {% endblock %}

@@ -2,9 +2,10 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 
+
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:zqdtjBMRmkAtPWhe@cluster0-milxz.mongodb.net/test?retryWrites=true')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:zqdtjBMRmkAtPWhe@cluster0-milxz.mongodb.net/cooking?retryWrites=true')
 mongo = PyMongo(app)
 
 class BaseObject(object):
@@ -12,10 +13,10 @@ class BaseObject(object):
 @app.route('/')
 @app.route('/recipes')
 def recipes():
-    if 'username' in session:
-        return 'You are logged in as ' + session['username']
+    if 'username1' in session:
+        return 'You are logged in as ' + session['username1']
     return render_template("recipes.html", 
-                           tasks=mongo.db.recipes.find())
+                           recipes=mongo.db.recipes.find())
      
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -32,14 +33,16 @@ def register():
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['username']})
         if existing_user is None:
-            users.insert({'name' : request.form['username'], 'user_country' : request.form['country_name']})
-            session['username'] = request.form['username']
+            username = request.form["username"]
+            country = request.form.get("country_name")
+            print(country)
+            users.insert_one({'name' : username, 'user_country' : country})
+            session['username1'] = request.form['username']
             return redirect(url_for('recipes'))
-            
-        # return "That username already exists!"
+        return "That username already exists!"
     return render_template('create_user.html',
                            countries=mongo.db.countries.find())
-    
+                           
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
