@@ -1,10 +1,7 @@
 {% extends 'base.html'%} {% block content %}
-<div class="header top-margin">
-  <div class="center-hor">
-    <h1>Create User Account</h>
-  </div>
+<div class="center-hor top-margin">
+  <h1>Create User Account</h>
 </div>
-<div class="main">
   <form action="{{url_for('register')}}" method="POST" class="col-12 center-hor">
     <div class="row">
       <div class="form-group">
@@ -14,7 +11,7 @@
     </div>
     <div class="row">
       <div class="form-group">
-         <label for="country">Your Country</label>
+        <label for="country">Your Country</label>
         <select id="coutnry" name="country_name" class="form-control form-control-lg">
             <option value="" disabled selected>Choose Country</option>
             {% for country_name in countries %}
@@ -28,4 +25,4 @@
     </div>
   </form>
 
-  {% endblock %}
+{% endblock %}

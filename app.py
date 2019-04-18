@@ -13,33 +13,40 @@ class BaseObject(object):
 @app.route('/')
 @app.route('/recipes')
 def recipes():
-    if 'username1' in session:
-        return 'You are logged in as ' + session['username1']
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
     return render_template("recipes.html", 
                            recipes=mongo.db.recipes.find())
      
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    users = mongo.db.users
-    user_login = users.find.one({'name' : request.form['username']})
-    if user_login:
-        session['username'] = request.form['username']
-        return redirect(url_for('recipes'))
-    return "Invalid Log In"
+    if request.method == 'POST':
+        users = mongo.db.users
+        # username = request.form['username']
+        user_login = users.find_one({'name' : request.form['username']})
+        if user_login:
+            session['username'] = request.form['username']
+            return redirect(url_for('recipes'))
+            
+        return "Invalid Log In"
+    return render_template('login.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['username']})
+        
         if existing_user is None:
             username = request.form["username"]
             country = request.form.get("country_name")
             print(country)
             users.insert_one({'name' : username, 'user_country' : country})
-            session['username1'] = request.form['username']
+            session['username'] = request.form['username']
             return redirect(url_for('recipes'))
+            
         return "That username already exists!"
+        
     return render_template('create_user.html',
                            countries=mongo.db.countries.find())
                            
