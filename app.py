@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 
 
@@ -13,8 +13,8 @@ class BaseObject(object):
 @app.route('/')
 @app.route('/recipes')
 def recipes():
-    # if 'username' in session:
-    #     return 'You are logged in as ' + session['username']
+    if 'username' in session:
+        flash('You were successfully logged in')
     return render_template("recipes.html", 
                            recipes=mongo.db.recipes.find())
      
@@ -28,12 +28,13 @@ def login():
             session['username'] = request.form['username']
             return redirect(url_for('recipes'))
             
-        return "Invalid Log In"
+        flash("Invalid Log In")
     return render_template('login.html')
     
 @app.route('/logout')
 def logout():
     session['username'] = False
+    flash("You were successfully logged out")
     return render_template('login.html') 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -49,8 +50,8 @@ def register():
             users.insert_one({'name' : username, 'user_country' : country})
             session['username'] = request.form['username']
             return redirect(url_for('recipes'))
+        flash("That username already exists!")
             
-        return "That username already exists!"
         
     return render_template('create_user.html',
                            countries=mongo.db.countries.find())
