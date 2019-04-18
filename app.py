@@ -13,8 +13,8 @@ class BaseObject(object):
 @app.route('/')
 @app.route('/recipes')
 def recipes():
-    if 'username' in session:
-        return 'You are logged in as ' + session['username']
+    # if 'username' in session:
+    #     return 'You are logged in as ' + session['username']
     return render_template("recipes.html", 
                            recipes=mongo.db.recipes.find())
      
@@ -30,6 +30,11 @@ def login():
             
         return "Invalid Log In"
     return render_template('login.html')
+    
+@app.route('/logout')
+def logout():
+    session['username'] = False
+    return render_template('login.html') 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
