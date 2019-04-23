@@ -22,7 +22,6 @@ def recipes():
 def login():
     if request.method == 'POST':
         users = mongo.db.users
-        # username = request.form['username']
         user_login = users.find_one({'name' : request.form['username']})
         if user_login:
             session['username'] = request.form['username']
@@ -55,7 +54,16 @@ def register():
         
     return render_template('create_user.html',
                            countries=mongo.db.countries.find())
-                           
+
+@app.route('/add_recipe', methods=['POST', 'GET'])
+def add_recipe():
+    if request.method == "POST":
+        selected_allergens = request.form.getlist("allergens")
+    return render_template('add_recipe.html',
+                            cuisine=mongo.db.cuisine.find(),
+                            allergens=mongo.db.allergens.find())
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

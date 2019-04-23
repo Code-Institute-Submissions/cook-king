@@ -1,0 +1,50 @@
+{% extends 'base.html'%} {% block content %}
+<div class="top-margin center-hor col-12">
+    <h1>Add a Recipe</h1>
+</div>
+<form action="{{url_for('add_recipe')}}" method="POST" class="col-12 center-hor">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rname">Recipe Name</label>
+                <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rname">Recipe Description</label>
+                <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="cusinen">Cuisine</label>
+            <select id="cuisinen" name="cuisine" class="form-control form-control-lg">
+            <option value="" disabled selected>Choose Cuisine</option>
+            {% for cuisine_name in cuisine %}
+              <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>Select Allergens</label>
+            <br>
+            {% for allergen_name in allergens %}
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="id_{{allergen_name.allergens}}" name="allergen" value="{{allergen_name.allergens}}">
+                <label for="id_{{allergen_name.allergens}}">{{allergen_name.allergen_name}}</label>
+            </div>{% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-lg">Add Recipe</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

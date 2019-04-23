@@ -12,7 +12,7 @@
     <div class="row">
       <div class="form-group">
         <label for="country">Your Country</label>
-        <select id="coutnry" name="country_name" class="form-control form-control-lg">
+        <select id="country" name="country_name" class="form-control form-control-lg">
             <option value="" disabled selected>Choose Country</option>
             {% for country_name in countries %}
               <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>

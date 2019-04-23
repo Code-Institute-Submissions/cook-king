@@ -20,6 +20,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{url_for('recipes')}}">Home</a></li>
                     {% if session['username'] %}
                     <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Log Out</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('add_recipe')}}">Add Recipe</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Create Account</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Log In</a></li>
