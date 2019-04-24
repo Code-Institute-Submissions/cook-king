@@ -57,8 +57,16 @@ def register():
 
 @app.route('/add_recipe', methods=['POST', 'GET'])
 def add_recipe():
-    if request.method == "POST":
+    if request.method == 'POST':
         selected_allergens = request.form.getlist("allergens")
+        print(selected_allergens)
+        recipes = mongo.db.recipes
+        existing_recipe = recipes.find_one({'recipe_name' : request.form['recipe_name']})
+        
+        if existing_recipe is None:
+            recipes.insert_one({'recipe_name' : request.form['recipe_name'], 'recipe_description' : request.form['recipe_desc'], 'recipe_cuisine' : request.form['cuisine'], 'recipe_instructions' : request.form['recipe_instructions'], 'allergens' : request.form.get('allergen'), 'author' : session['username']})
+        flash("Recipe successfully added")
+        return redirect(url_for('recipes'))
     return render_template('add_recipe.html',
                             cuisine=mongo.db.cuisine.find(),
                             allergens=mongo.db.allergens.find())
