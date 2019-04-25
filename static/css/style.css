@@ -10,3 +10,23 @@
     margin: auto;
     width: 50%;
 }
+
+.container-recipes {
+    position: relative;
+    text-align: center;
+    /*color: white;*/
+}
+
+.centered-top {
+    position: absolute;
+}
+
+.bottom-middle {
+    position: absolute;
+    bottom: 8px;
+}
+
+.recipe-images {
+    height: 20em;
+    width: 100%;
+}

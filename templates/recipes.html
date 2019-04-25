@@ -1,4 +1,14 @@
 {% extends 'base.html'%} {% block content %}
-
+<div class="row">
+    {% for recipes in recipes %}
+    <div class="col-3">
+        <div class="container-recipes">
+            <div class="centered-top"><strong>{{recipes.recipe_name}}</strong></div>
+            <img src={{recipes.recipe_image}} class='recipe-images' />
+            <strong class="bottom-middle">{{recipes.recipe_description}}</strong>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

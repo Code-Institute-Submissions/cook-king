@@ -13,25 +13,30 @@ class BaseObject(object):
 @app.route('/')
 @app.route('/recipes')
 def recipes():
+    # check if there is a user in session then flashes
     if 'username' in session:
         flash('You were successfully logged in')
+    recipes=mongo.db.recipes.find()
+    print(recipes)
     return render_template("recipes.html", 
-                           recipes=mongo.db.recipes.find())
+                           recipes=recipes)
      
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         users = mongo.db.users
+        # finds the user in the database
         user_login = users.find_one({'name' : request.form['username']})
         if user_login:
             session['username'] = request.form['username']
             return redirect(url_for('recipes'))
-            
+        # if there is no user by that name and invalid user flash happens   
         flash("Invalid Log In")
     return render_template('login.html')
     
 @app.route('/logout')
 def logout():
+    # session is false, and user is logged out
     session['username'] = False
     flash("You were successfully logged out")
     return render_template('login.html') 
@@ -40,12 +45,12 @@ def logout():
 def register():
     if request.method == 'POST':
         users = mongo.db.users
+        # checks for existing user
         existing_user = users.find_one({'name' : request.form['username']})
-        
+        # if there is no existing use, registration goes ahead
         if existing_user is None:
             username = request.form["username"]
             country = request.form.get("country_name")
-            print(country)
             users.insert_one({'name' : username, 'user_country' : country})
             session['username'] = request.form['username']
             return redirect(url_for('recipes'))
@@ -55,21 +60,51 @@ def register():
     return render_template('create_user.html',
                            countries=mongo.db.countries.find())
 
-@app.route('/add_recipe', methods=['POST', 'GET'])
+
+
+@app.route('/add_recipe', methods=['GET','POST'])
 def add_recipe():
+    recipes = mongo.db.recipes
     if request.method == 'POST':
-        selected_allergens = request.form.getlist("allergens")
-        print(selected_allergens)
-        recipes = mongo.db.recipes
-        existing_recipe = recipes.find_one({'recipe_name' : request.form['recipe_name']})
+		# This is going to be passed into mongo
+        new_recipe = {'author': session['username'],}
+		# This is to hold allergens and then added to new_recipe 
+		# which we just created above
+        recipe_allergens = []
+		
+		# Get the data from the form
+        recipe=request.form
+        print(recipe)
+        # Loop through the keys
+        for key in recipe:
+            print(key, request.form[key])
+			# Checks if key == your name fields that are not allergens
+            if key == 'recipe_description' or key == 'recipe_name' or key == 'cuisine' or key == 'recipe_instructions' or key == 'recipe_image':
+				# adds them to the dictionary created above
+                new_recipe[key]=request.form[key]
+            else:
+				#else it pushes them to a list .. given you two
+				# choices ... commented out one gives you
+				# recipe_allergens: ['egg', 'milk']
+				# second one gives
+				# recipe_allergens: [{'milk': milk} {'egg': egg}]
+				
+                recipe_allergens.append(request.form[key])
+                # recipe_allergens.append({key: request.form[key]})
         
-        if existing_recipe is None:
-            recipes.insert_one({'recipe_name' : request.form['recipe_name'], 'recipe_description' : request.form['recipe_desc'], 'recipe_cuisine' : request.form['cuisine'], 'recipe_instructions' : request.form['recipe_instructions'], 'allergens' : request.form.get('allergen'), 'author' : session['username']})
+		# Then recipe_allergens is added to the new_recipe dict
+        new_recipe['allergens']=recipe_allergens
+        print(new_recipe)
+		# Then for your insert just pass in new_recipe
+        recipes.insert_one(new_recipe)
         flash("Recipe successfully added")
         return redirect(url_for('recipes'))
-    return render_template('add_recipe.html',
-                            cuisine=mongo.db.cuisine.find(),
-                            allergens=mongo.db.allergens.find())
+    else:
+        allergens = mongo.db.allergens.find()
+        return render_template('add_recipe.html',
+                                cuisine=mongo.db.cuisine.find(),
+                                allergens=allergens)
+    
 
 
 if __name__ == '__main__':

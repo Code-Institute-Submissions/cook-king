@@ -15,7 +15,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="rname">Recipe Description</label>
-                <input id="rname" name="recipe_desc" type="text" class="form-control form-control-lg" required>
+                <input id="rname" name="recipe_description" type="text" class="form-control form-control-lg" required>
             </div>
         </div>
     </div>
@@ -33,19 +33,26 @@
     <div class="row">
         <div class="col-6">
             <label>Select Allergens</label>
-            <br>
-            {% for allergen_name in allergens %}
+            <br> {% for allergen_name in allergens %}
             <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" id="id_{{allergen_name.allergens}}" name="allergen" value="{{allergen_name.allergens}}">
-                <label for="id_{{allergen_name.allergens}}">{{allergen_name.allergen_name}}</label>
+                <input type="checkbox" class="form-check-input" id="id_{{allergen_name.allergens}}" name={{allergen_name.allergen_name}} value="{{allergen_name.allergen_name}}">
+                <label for=id_{{allergen_name.allergen_name}}>{{allergen_name.allergen_name}}</label>
             </div>{% endfor %}
         </div>
     </div>
-       <div class="row">
+    <div class="row">
         <div class="col-6">
             <div class="form-group">
                 <label for="rinstruc">Recipe Instructions</label>
                 <input id="rinstruc" name="recipe_instructions" type="text" class="form-control form-control-lg" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rimage">Recipe Image Link</label>
+                <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg" required>
             </div>
         </div>
     </div>
