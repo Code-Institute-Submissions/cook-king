@@ -13,18 +13,15 @@
 
 .container-recipes {
     position: relative;
-    text-align: center;
+    /*text-align: center;*/
     /*color: white;*/
 }
 
-.centered-top {
-    position: absolute;
+.description-text {
+    font-size: 1em;
 }
 
-.bottom-middle {
-    position: absolute;
-    bottom: 8px;
-}
+
 
 .recipe-images {
     height: 20em;

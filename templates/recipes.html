@@ -2,10 +2,12 @@
 <div class="row">
     {% for recipes in recipes %}
     <div class="col-3">
-        <div class="container-recipes">
-            <div class="centered-top"><strong>{{recipes.recipe_name}}</strong></div>
+        <div class="container">
+            <h4>{{recipes.recipe_name}}</h4>
             <img src={{recipes.recipe_image}} class='recipe-images' />
-            <strong class="bottom-middle">{{recipes.recipe_description}}</strong>
+            <div class="description-text">{{recipes.recipe_description}}
+            </div>
+            
         </div>
     </div>
     {% endfor %}
