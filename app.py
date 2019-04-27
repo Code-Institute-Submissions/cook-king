@@ -128,8 +128,9 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipe = mongo.db.recipes
-    # recipe.update( {'_id': ObjectId(task_id)},
-    return redirect(url_for('/edit_recipe/<recipe_id>'))
+    recipe.update( {'_id': ObjectId(recipe_id)}, request.form)
+    flash('Recipe succesfully edited')
+    return redirect(url_for('recipes'))
 
 
 if __name__ == '__main__':
