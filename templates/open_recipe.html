@@ -1,5 +1,5 @@
 {% extends 'base.html'%} {% block content %}
-<div class="container-fluid">
+
     <div class="row">
         <div class="col-12">
             <h2>{{recipe.recipe_name}}</h2>
@@ -9,7 +9,7 @@
         <div class="col-sm-12 col-lg-6"><img src={{recipe.recipe_image}} class='recipe-images-page' /></div>
         <div class="col-sm-12 col-lg-6">
             <strong class="author-name">Author: {{recipe.author}}</strong>
-           
+             <h5>Cuisine: {{recipe.cuisine}}</h5>
             <div class="description-text">{{recipe.recipe_description}}
             </div>
         </div>
@@ -38,7 +38,5 @@
         </div>
     </div>
     {% endif %}
-
-</div>
 
 {% endblock %}

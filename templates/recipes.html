@@ -2,7 +2,7 @@
 <div class="row">
     {% for recipes in recipes %}
     <div class="col-3">
-        <div class="container">
+        <div class="container-fluid">
             <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}">
                 <h4>{{recipes.recipe_name}}</h4>
                 <img src={{recipes.recipe_image}} class='recipe-images' />
