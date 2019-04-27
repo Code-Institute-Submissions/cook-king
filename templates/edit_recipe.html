@@ -2,12 +2,12 @@
 <div class="top-margin center-hor col-12">
     <h1>Edit {{recipe.recipe_name}}</h1>
 </div>
-<form action="{{url_for('edit_recipe')}}" method="POST" class="col-12 center-hor">
+<form action="{{url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="col-12 center-hor">
     <div class="row">
         <div class="col-6">
             <div class="form-group">
                 <label for="rname">Recipe Name</label>
-                <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" required>
+                <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" value='{{recipe.recipe_name}}'required>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="rname">Recipe Description</label>
-                <textarea id="rname" name="recipe_description" class="form-control form-control-lg" cols="60" rows="5" required></textarea>
+                <textarea id="rname" name="recipe_description" class="form-control form-control-lg" cols="60" rows="5" required>{{recipe.recipe_description}}</textarea>
                 <!--<input id="rname" name="recipe_description" type="text" class="form-control form-control-lg" maxlength="200" required>-->
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="rinstruc">Recipe Instructions</label>
-                <textarea id="rinstruc" name="recipe_instructions" class="form-control form-control-lg" cols="60" rows="10" required></textarea>
+                <textarea id="rinstruc" name="recipe_instructions" class="form-control form-control-lg" cols="60" rows="10" required>{{recipe.recipe_instructions}}</textarea>
                 <!--<input id="rinstruc" name="recipe_instructions" type="text" class="form-control form-control-lg" required>-->
             </div>
         </div>
@@ -54,14 +54,15 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="rimage">Recipe Image Link</label>
-                <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg" required>
+                <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg" value='{{recipe.recipe_image}}' required>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-lg">Add Recipe</button>
+            <button type="submit" class="btn btn-success btn-lg">Edit Recipe</button>
         </div>
     </div>
 </form>
+
 {% endblock %}

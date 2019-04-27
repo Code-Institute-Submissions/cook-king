@@ -119,17 +119,18 @@ def delete_recipe(recipe_id):
     return redirect(url_for('recipes'))
     
 #  edit recipe 
-@app.route('/edit_recipe/<recipe_id>', methods=['POST', 'GET'])
+@app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    if request.method == 'POST':
-        the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-        # the_recipe.update( {'_id': ObjectId(recipe_id)},{
-            
-        # }
-        return render_template('edit_recipe.html',
-                                the_recipe=the_recipe)
-    flash('Recipe succesfully edited')
-    return redirect(url_for('recipes'))
+    the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    allergens = mongo.db.allergens.find()
+    return render_template('edit_recipe.html', recipe=the_recipe, cuisine=mongo.db.cuisine.find(), allergens=allergens)
+    
+@app.route('/update_recipe/<recipe_id>', methods=["POST"])
+def update_recipe(recipe_id):
+    recipe = mongo.db.recipes
+    # recipe.update( {'_id': ObjectId(task_id)},
+    return redirect(url_for('/edit_recipe/<recipe_id>'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
