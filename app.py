@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId 
 
 
 app = Flask(__name__)
@@ -104,8 +105,31 @@ def add_recipe():
         return render_template('add_recipe.html',
                                 cuisine=mongo.db.cuisine.find(),
                                 allergens=allergens)
+# open recipes
+@app.route('/open_recipes/<recipe_id>')
+def open_recipe(recipe_id):
+    the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('open_recipe.html', recipe=the_recipe)
     
-
+    
+# deletes the recipes
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('recipes'))
+    
+#  edit recipe 
+@app.route('/edit_recipe/<recipe_id>', methods=['POST', 'GET'])
+def edit_recipe(recipe_id):
+    if request.method == 'POST':
+        the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        # the_recipe.update( {'_id': ObjectId(recipe_id)},{
+            
+        # }
+        return render_template('edit_recipe.html',
+                                the_recipe=the_recipe)
+    flash('Recipe succesfully edited')
+    return redirect(url_for('recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

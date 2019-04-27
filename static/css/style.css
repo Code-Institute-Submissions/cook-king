@@ -16,14 +16,28 @@
     /*text-align: center;*/
     /*color: white;*/
 }
+.recipe-images {
+    height: 20em;
+    width: 100%;
+}
 
+/* open recipe page*/
+
+.author-name {
+    font-size: 19px;
+}
 .description-text {
     font-size: 1em;
 }
 
+.margins {
+    margin: 10px;
+}
 
+.instruction-text{
+    font-size: 15px;
+}
 
-.recipe-images {
-    height: 20em;
-    width: 100%;
+.recipe-images-page{
+    height:30em;
 }

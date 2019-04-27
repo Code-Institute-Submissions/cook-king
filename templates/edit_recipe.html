@@ -1,8 +1,8 @@
 {% extends 'base.html'%} {% block content %}
 <div class="top-margin center-hor col-12">
-    <h1>Add a Recipe</h1>
+    <h1>Edit {{recipe.recipe_name}}</h1>
 </div>
-<form action="{{url_for('add_recipe')}}" method="POST" class="col-12 center-hor">
+<form action="{{url_for('edit_recipe')}}" method="POST" class="col-12 center-hor">
     <div class="row">
         <div class="col-6">
             <div class="form-group">
