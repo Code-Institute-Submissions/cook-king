@@ -11,6 +11,7 @@ mongo = PyMongo(app)
 
 class BaseObject(object):
     app.secret_key='%\xdf\xca*\x03\xf3\xdf3\xf6)\xe31\xcd\xbb)\x17'
+
 @app.route('/')
 @app.route('/recipes')
 def recipes():
@@ -84,8 +85,6 @@ def add_recipe():
 				# adds them to the dictionary created above
                 new_recipe[key]=request.form[key]
             else:
-				#else it pushes them to a list .. given you two
-				# choices ... commented out one gives you
 				# recipe_allergens: ['egg', 'milk']
 				# second one gives
 				# recipe_allergens: [{'milk': milk} {'egg': egg}]
@@ -128,7 +127,36 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipe = mongo.db.recipes
-    recipe.update( {'_id': ObjectId(recipe_id)}, request.form)
+    if request.method == 'POST':
+		# This is going to be passed into mongo
+        new_recipe = {'author': session['username'],}
+		# This is to hold allergens and then added to new_recipe 
+		# which we just created above
+        recipe_allergens = []
+		
+		# Get the data from the form
+        recipe=request.form
+        print(recipe)
+        # Loop through the keys
+        for key in recipe:
+            print(key, request.form[key])
+			# Checks if key == your name fields that are not allergens
+            if key == 'recipe_description' or key == 'recipe_name' or key == 'cuisine' or key == 'recipe_instructions' or key == 'recipe_image':
+				# adds them to the dictionary created above
+                new_recipe[key]=request.form[key]
+            else:
+				# recipe_allergens: ['egg', 'milk']
+				# second one gives
+				# recipe_allergens: [{'milk': milk} {'egg': egg}]
+				
+                recipe_allergens.append(request.form[key])
+                # recipe_allergens.append({key: request.form[key]})
+        
+		# Then recipe_allergens is added to the new_recipe dict
+        new_recipe['allergens']=recipe_allergens
+        print(new_recipe)
+        # pushes the edit to database
+        mongo.db.recipes.update( {'_id': ObjectId(recipe_id)}, new_recipe)
     flash('Recipe succesfully edited')
     return redirect(url_for('recipes'))
 
