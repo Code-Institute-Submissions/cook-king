@@ -4,7 +4,7 @@
     <div class="col-3">
         <div class="container-fluid">
             <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}">
-                <h4>{{recipes.recipe_name}}</h4>
+                <h5>{{recipes.recipe_name}}</h5>
                 <img src={{recipes.recipe_image}} class='recipe-images' /> 
                 Cuisine: {{recipes.cuisine}}
                 <div class="description-text">{{recipes.recipe_description}}</a>
