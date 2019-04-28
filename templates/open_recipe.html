@@ -9,7 +9,7 @@
         <div class="col-sm-12 col-lg-6"><img src={{recipe.recipe_image}} class='recipe-images-page' /></div>
         <div class="col-sm-12 col-lg-6">
             <strong class="author-name">Author: {{recipe.author}}</strong>
-             <h5>Cuisine: {{recipe.cuisine}}</h5>
+            <h5>Cuisine: {{recipe.cuisine}}</h5>
             <div class="description-text">{{recipe.recipe_description}}
             </div>
         </div>
@@ -29,8 +29,7 @@
         </div>
     </div>
     <!--only shows if you are the author-->
-    <Br>
-    {% if session['username'] == recipe.author %}
+    <Br> {% if session['username'] == recipe.author %}
     <div class="row">
         <div class="col-12">
             <a class="btn btn-success" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" role="button">Edit</a>
