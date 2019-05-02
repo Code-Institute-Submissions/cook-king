@@ -7,7 +7,7 @@
                 <h5>{{recipes.recipe_name}}</h5>
                 <img src={{recipes.recipe_image}} class='recipe-images' /> 
                 Cuisine: {{recipes.cuisine}}
-                <div class="description-text">{{recipes.recipe_description}}</a>
+                <div class="description-text">{{recipes.recipe_description|truncate(100)}}</a>
             </div>
 
         </div>

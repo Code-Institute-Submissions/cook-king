@@ -1,69 +1,69 @@
 {% extends 'base.html'%} {% block content %}
 
-    <div class="top-margin center-hor col-12">
-        <h1>Edit {{recipe.recipe_name}}</h1>
+<div class="top-margin center-hor col-12">
+    <h1>Edit {{recipe.recipe_name}}</h1>
+</div>
+<form action="{{url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="col-12 center-hor">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rname">Recipe Name</label>
+                <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" value='{{recipe.recipe_name}}' required>
+            </div>
+        </div>
     </div>
-    <form action="{{url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="col-12 center-hor">
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rname">Recipe Name</label>
-                    <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" value='{{recipe.recipe_name}}' required>
-                </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rname">Recipe Description</label>
+                <textarea id="rname" name="recipe_description" class="form-control form-control-lg" cols="60" rows="5" required>{{recipe.recipe_description}}</textarea>
+                <!--<input id="rname" name="recipe_description" type="text" class="form-control form-control-lg" maxlength="200" required>-->
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rname">Recipe Description</label>
-                    <textarea id="rname" name="recipe_description" class="form-control form-control-lg" cols="60" rows="5" required>{{recipe.recipe_description}}</textarea>
-                    <!--<input id="rname" name="recipe_description" type="text" class="form-control form-control-lg" maxlength="200" required>-->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-6">
-                <label for="cusinen">Cuisine</label>
-                <select id="cuisinen" name="cuisine" class="form-control form-control-lg">
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="cusinen">Cuisine</label>
+            <select id="cuisinen" name="cuisine" class="form-control form-control-lg">
             <option value="" disabled selected>Choose Cuisine</option>
             {% for cuisine_name in cuisine %}
               <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
             {% endfor %}
             </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>Select Allergens</label>
+            <br> {% for allergen in allergens %}
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name={{allergen._id}} value="{{allergen.allergen_name}}">
+                <label for=id_{{allergen.allergen_name}}>{{allergen.allergen_name}}</label>
+            </div>{% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rinstruc">Recipe Instructions</label>
+                <textarea id="rinstruc" name="recipe_instructions" class="form-control form-control-lg" cols="60" rows="10" required>{{recipe.recipe_instructions}}</textarea>
+                <!--<input id="rinstruc" name="recipe_instructions" type="text" class="form-control form-control-lg" required>-->
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <label>Select Allergens</label>
-                <br> {% for allergen_name in allergens %}
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="id_{{allergen_name.allergens}}" name={{allergen_name.allergen_name}} value="{{allergen_name.allergen_name}}">
-                    <label for=id_{{allergen_name.allergen_name}}>{{allergen_name.allergen_name}}</label>
-                </div>{% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="rimage">Recipe Image Link</label>
+                <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg" value='{{recipe.recipe_image}}' required>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rinstruc">Recipe Instructions</label>
-                    <textarea id="rinstruc" name="recipe_instructions" class="form-control form-control-lg" cols="60" rows="10" required>{{recipe.recipe_instructions}}</textarea>
-                    <!--<input id="rinstruc" name="recipe_instructions" type="text" class="form-control form-control-lg" required>-->
-                </div>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success btn-lg">Edit Recipe</button>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rimage">Recipe Image Link</label>
-                    <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg" value='{{recipe.recipe_image}}' required>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-success btn-lg">Edit Recipe</button>
-            </div>
-        </div>
-    </form>
+    </div>
+</form>
 
 {% endblock %}

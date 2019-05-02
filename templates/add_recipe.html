@@ -26,7 +26,7 @@
             <select id="cuisinen" name="cuisine" class="form-control form-control-lg">
             <option value="" disabled selected>Choose Cuisine</option>
             {% for cuisine_name in cuisine %}
-              <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
+             <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
             {% endfor %}
             </select>
         </div>
@@ -34,13 +34,26 @@
     <div class="row">
         <div class="col-6">
             <label>Select Allergens</label>
-            <br> {% for allergen_name in allergens %}
+            <br> {% for allergen in allergens %}
             <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" id="id_{{allergen_name.allergens}}" name={{allergen_name.allergen_name}} value="{{allergen_name.allergen_name}}">
-                <label for=id_{{allergen_name.allergen_name}}>{{allergen_name.allergen_name}}</label>
+                <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name={{allergen._id}} value="{{allergen.allergen_name}}">
+                <label for=id_{{allergen.allergen_name}}>{{allergen.allergen_name}}</label>
             </div>{% endfor %}
         </div>
     </div>
+    <div class="row">
+        <div class="col-6">
+            <label>Select Ingredients</label>
+            <br>
+            <select  multiple name='ingredients' class="form-control form-control-lg">
+                <option value="" disabled selected>Choose Ingredients</option>
+                {% for ingredient in ingredients %}
+                <option name='{{ingredient._id}}' value="{{ingredient._id}}">{{ingredient.ingredient}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-6">
             <div class="form-group">

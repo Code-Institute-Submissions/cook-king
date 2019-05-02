@@ -68,46 +68,49 @@ def register():
 def add_recipe():
     recipes = mongo.db.recipes
     if request.method == 'POST':
-		# This is going to be passed into mongo
         new_recipe = {'author': session['username'],}
-		# This is to hold allergens and then added to new_recipe 
-		# which we just created above
         recipe_allergens = []
-		
-		# Get the data from the form
+        recipe_ingredients = []
         recipe=request.form
+        # import pdb; pdb.set_trace()
         print(recipe)
-        # Loop through the keys
         for key in recipe:
             print(key, request.form[key])
-			# Checks if key == your name fields that are not allergens
-            if key == 'recipe_description' or key == 'recipe_name' or key == 'cuisine' or key == 'recipe_instructions' or key == 'recipe_image':
-				# adds them to the dictionary created above
+            if key in ['recipe_description','recipe_name','cuisine','recipe_instructions','recipe_image']:
                 new_recipe[key]=request.form[key]
-            else:
-				# recipe_allergens: ['egg', 'milk']
-				# second one gives
-				# recipe_allergens: [{'milk': milk} {'egg': egg}]
-				
-                recipe_allergens.append(request.form[key])
-                # recipe_allergens.append({key: request.form[key]})
-        
+            elif key in ['5cb78b681c9d440000423101', '5cb78b841c9d440000423102', '5cb78b9c1c9d440000423103', '5cb78baa1c9d440000423104', '5cb78bb41c9d440000423105', '5cb78bbf1c9d440000423106', '5cb78bc91c9d440000423107', '5cb78bdc1c9d440000423108', '5cb78be71c9d440000423109', '5cb78bf31c9d44000042310a', '5cb78bfe1c9d44000042310b', '5cb78c081c9d44000042310c', '5cb78c141c9d44000042310d', '5cb78c211c9d44000042310e']:
+                recipe_allergens.append(key)
+            else: 
+                for k in key:
+                    recipe_ingredients.append(k)
+                
+        print('ingredients',recipe_ingredients)
 		# Then recipe_allergens is added to the new_recipe dict
         new_recipe['allergens']=recipe_allergens
+        new_recipe['ingredients']=recipe_ingredients
+        # import pdb; pdb.set_trace()
         print(new_recipe)
 		# Then for your insert just pass in new_recipe
-        recipes.insert_one(new_recipe)
+        # recipes.insert_one(new_recipe)
         flash("Recipe successfully added")
         return redirect(url_for('recipes'))
     else:
         allergens = mongo.db.allergens.find()
+        ingredients = mongo.db.ingredients.find()
+        print(ingredients)
         return render_template('add_recipe.html',
                                 cuisine=mongo.db.cuisine.find(),
-                                allergens=allergens)
+                                allergens = allergens,
+                                ingredients = ingredients)
 # open recipes
 @app.route('/open_recipes/<recipe_id>')
 def open_recipe(recipe_id):
     the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    recipe_allergens = []
+    # import pdb; pdb.set_trace()
+    for allergen_id in  the_recipe["allergens"]:
+        recipe_allergens.append(mongo.db.allergens.find_one({"_id": ObjectId(allergen_id)}))
+    the_recipe["allergens"] = recipe_allergens
     return render_template('open_recipe.html', recipe=the_recipe)
     
     
@@ -124,6 +127,13 @@ def edit_recipe(recipe_id):
     allergens = mongo.db.allergens.find()
     return render_template('edit_recipe.html', recipe=the_recipe, cuisine=mongo.db.cuisine.find(), allergens=allergens)
     
+@app.route('/user/<name>')
+def user_recipes(name):
+    name = session['username']
+    # user = mongo.db.users.find_one(name = session['username'])
+    return render_template('user_recipes.html',  name=name)
+    
+    
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipe = mongo.db.recipes
@@ -136,12 +146,13 @@ def update_recipe(recipe_id):
 		
 		# Get the data from the form
         recipe=request.form
+        # import pdb; pdb.set_trace()
         print(recipe)
         # Loop through the keys
         for key in recipe:
             print(key, request.form[key])
 			# Checks if key == your name fields that are not allergens
-            if key == 'recipe_description' or key == 'recipe_name' or key == 'cuisine' or key == 'recipe_instructions' or key == 'recipe_image':
+            if key in ['recipe_description','recipe_name','cuisine','recipe_instructions','recipe_image']:
 				# adds them to the dictionary created above
                 new_recipe[key]=request.form[key]
             else:
@@ -149,7 +160,7 @@ def update_recipe(recipe_id):
 				# second one gives
 				# recipe_allergens: [{'milk': milk} {'egg': egg}]
 				
-                recipe_allergens.append(request.form[key])
+                recipe_allergens.append(key)
                 # recipe_allergens.append({key: request.form[key]})
         
 		# Then recipe_allergens is added to the new_recipe dict
