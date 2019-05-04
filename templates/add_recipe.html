@@ -45,7 +45,7 @@
         <div class="col-6">
             <label>Select Ingredients</label>
             <br>
-            <select  multiple name='ingredients' class="form-control form-control-lg">
+            <select  multiple id="ingred-id" name='ingredients-select' class="">
                 <option value="" disabled selected>Choose Ingredients</option>
                 {% for ingredient in ingredients %}
                 <option name='{{ingredient._id}}' value="{{ingredient._id}}">{{ingredient.ingredient}}</option>

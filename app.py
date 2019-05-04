@@ -70,7 +70,7 @@ def add_recipe():
     if request.method == 'POST':
         new_recipe = {'author': session['username'],}
         recipe_allergens = []
-        recipe_ingredients = []
+        # ingredients = []
         recipe=request.form
         # import pdb; pdb.set_trace()
         print(recipe)
@@ -80,14 +80,14 @@ def add_recipe():
                 new_recipe[key]=request.form[key]
             elif key in ['5cb78b681c9d440000423101', '5cb78b841c9d440000423102', '5cb78b9c1c9d440000423103', '5cb78baa1c9d440000423104', '5cb78bb41c9d440000423105', '5cb78bbf1c9d440000423106', '5cb78bc91c9d440000423107', '5cb78bdc1c9d440000423108', '5cb78be71c9d440000423109', '5cb78bf31c9d44000042310a', '5cb78bfe1c9d44000042310b', '5cb78c081c9d44000042310c', '5cb78c141c9d44000042310d', '5cb78c211c9d44000042310e']:
                 recipe_allergens.append(key)
-            else: 
-                for k in key:
-                    recipe_ingredients.append(k)
                 
-        print('ingredients',recipe_ingredients)
+            else:
+                ingredients=request.form.getlist('ingredients-select')
+                
+        # print('ingredients',recipe_ingredients)
 		# Then recipe_allergens is added to the new_recipe dict
         new_recipe['allergens']=recipe_allergens
-        new_recipe['ingredients']=recipe_ingredients
+        new_recipe['ingredients']=ingredients
         # import pdb; pdb.set_trace()
         print(new_recipe)
 		# Then for your insert just pass in new_recipe
