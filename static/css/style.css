@@ -2,6 +2,32 @@ a:link {
     text-decoration: none;
 }
 
+.allergen-ingredients {
+    display: inline-block;
+    
+}
+
+.ingredients-bg {
+    background: #4FFF8A;
+    border-radius:25px;
+    width: 8em;
+    text-align: center;
+    display: inline-block;
+    margin: .25em;
+}
+
+.allergens-bg {
+    background: #FFA349;
+    border-radius:25px;
+    width: 8em;
+    text-align: center;
+    display: inline-block;
+    margin: .25em;
+}
+
+.recipe-links {
+    color: black;
+}
 .top-margin {
     margin-top: 15em;
 }

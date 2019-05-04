@@ -6,13 +6,11 @@
     </div>
 </div>
 <div class="row">
-
     <div class="col-sm-12 col-lg-6">
         <div class="image-open-container">
             <img src={{recipe.recipe_image}} class='recipe-images-page' />
         </div>
     </div>
-
     <div class="col-sm-12 col-lg-6">
         <strong class="author-name">Cuisine: {{recipe.cuisine}}</strong>
         <h6>Author: {{recipe.author}}</h6>
@@ -22,13 +20,17 @@
             <div class="col-6">
                 <h5>Allergens:</h5>
                 {% for allergen in recipe.allergens %}
-                <h6>{{allergen.allergen_name}}</h6>
+                <div class="allergens-bg">
+                    <h6 class="allergen-ingredients">{{allergen.allergen_name}}</h6>
+                </div>
                 {% endfor %}
             </div>
             <div class="col-6">
                 <h5>Ingredients:</h5>
                 {% for ingredient in recipe.ingredients %}
-                <h6>{{ingredient.ingredient}}</h6>
+                <div class="ingredients-bg">
+                    <h6 class="allergen-ingredients">{{ingredient.ingredient}}</h6>
+                </div>
                 {% endfor %}
             </div>
         </div>
@@ -36,7 +38,7 @@
 </div>
 
 <div class="row small-margin">
-    <div class="col-6">
+    <div class="col-sm-12 col-lg-6">
         <h3>Method</h3>
         <div class="instruction-text">
             {{recipe.recipe_instructions}}
