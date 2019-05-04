@@ -2,14 +2,17 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
+import env
 
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:zqdtjBMRmkAtPWhe@cluster0-milxz.mongodb.net/cooking?retryWrites=true')
+URI=os.environ.get('URI')
+app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
-app.secret_key='%\xdf\xca*\x03\xf3\xdf3\xf6)\xe31\xcd\xbb)\x17'
+
+app.secret_key=os.environ.get('SECRET_KEY')
 
 @app.route('/')
 @app.route('/recipes')
