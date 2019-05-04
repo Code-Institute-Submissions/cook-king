@@ -14,22 +14,29 @@
     </div>
 
     <div class="col-sm-12 col-lg-6">
-        <strong class="author-name">Author: {{recipe.author}}</strong>
-        <h5>Cuisine: {{recipe.cuisine}}</h5>
+        <strong class="author-name">Cuisine: {{recipe.cuisine}}</strong>
+        <h6>Author: {{recipe.author}}</h6>
         <div class="description-text">{{recipe.recipe_description}}
+        </div>
+        <div class="row small-margin">
+            <div class="col-6">
+                <h5>Allergens:</h5>
+                {% for allergen in recipe.allergens %}
+                <h6>{{allergen.allergen_name}}</h6>
+                {% endfor %}
+            </div>
+            <div class="col-6">
+                <h5>Ingredients:</h5>
+                {% for ingredient in recipe.ingredients %}
+                <h6>{{ingredient.ingredient}}</h6>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-12">
-        <h5>Allergens:</h5>
-        {% for allergen in recipe.allergens %}
-        <h6>{{allergen.allergen_name}}</h6>
-        {% endfor %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
+
+<div class="row small-margin">
+    <div class="col-6">
         <h3>Method</h3>
         <div class="instruction-text">
             {{recipe.recipe_instructions}}

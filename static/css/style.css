@@ -6,6 +6,10 @@ a {
     margin-top: 15em;
 }
 
+.small-margin {
+    margin-top: 2em;
+}
+
 .logo {
     height: 55px;
 }

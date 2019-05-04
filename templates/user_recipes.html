@@ -2,5 +2,20 @@
 <div class="row">
 <h1>{{name}}</h1>
 </div>
+<div class="row">
+    {% for recipes in recipes %}
+    <div class="col-sm-12 col-lg-3">
+        <div class="container-fluid">
+            <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}">
+                <h5>{{recipes.recipe_name}}</h5>
+                <img src={{recipes.recipe_image}} class='recipe-images' /> Cuisine: {{recipes.cuisine}}
+                <div class="description-text">{{recipes.recipe_description|truncate(100)}}
+                </div>
+            </a>
+        </div>
 
+    </div>
+</div>
+{% endfor %}
+</div>
 {% endblock %}

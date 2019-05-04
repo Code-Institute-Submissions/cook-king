@@ -41,19 +41,19 @@
             </div>{% endfor %}
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-6">
             <label>Select Ingredients</label>
             <br>
-            <select  multiple id="ingred-id" name='ingredients-select' class="">
-                <option value="" disabled selected>Choose Ingredients</option>
+            <select  multiple id="ingred-id" name='ingredients-select' class="form-control form-control-lg" data-placeholder="Begin typing find ingredients...">
                 {% for ingredient in ingredients %}
                 <option name='{{ingredient._id}}' value="{{ingredient._id}}">{{ingredient.ingredient}}</option>
                 {% endfor %}
             </select>
         </div>
     </div>
-
+    <br>
     <div class="row">
         <div class="col-6">
             <div class="form-group">

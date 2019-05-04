@@ -5,14 +5,15 @@
         <div class="container-fluid">
             <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}">
                 <h5>{{recipes.recipe_name}}</h5>
-                <img src={{recipes.recipe_image}} class='recipe-images' /> 
-                Cuisine: {{recipes.cuisine}}
-                <div class="description-text">{{recipes.recipe_description|truncate(100)}}</a>
-            </div>
-
+                <img src={{recipes.recipe_image}} class='recipe-images' /> Cuisine: {{recipes.cuisine}}
+                <div class="description-text">{{recipes.recipe_description|truncate(100)}}
+                </div>
+            </a>
         </div>
+
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 </div>
 
 {% endblock %}
