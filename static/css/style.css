@@ -12,11 +12,13 @@ a:link {
     font-size: 3rem;
 }
 
+
+
 .ingredients-bg {
     background: #4FFF8A;
     border-radius: 25px;
-    width: 8em;
-    /*width: 100%;*/
+    /*width: 8em;*/
+    width: 100%;
     text-align: center;
     display: inline-block;
     margin: .25em;

@@ -36,16 +36,16 @@
             </div>
         </nav>
     </header>
-    {% with messages = get_flashed_messages() %} {% if messages %}
-    <ul class="flashes margin-top">
-        {% for message in messages %}
-        <h6>{{ message }}</h6>
-        {% endfor %}
-    </ul>
-    {% endif %} {% endwith %}
+
     <main>
         <div class="container-fluid margin">
-            {% block content %} {% endblock %}
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <div class="flashes margin-top">
+                {% for message in messages %}
+                <h6>{{ message }}</h6>
+                {% endfor %}
+            </div>
+            {% endif %} {% endwith %} {% block content %} {% endblock %}
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

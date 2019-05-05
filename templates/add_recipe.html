@@ -24,7 +24,7 @@
         <div class="row">
             <div class="form-group col-6">
                 <label for="cusinen">Cuisine</label>
-                <select id="cuisinen" name="cuisine" class="form-control form-control-lg">
+                <select id="cuisinen" name="cuisine" class="form-control form-control-lg" required>
             <option value="" disabled selected>Choose Cuisine</option>
             {% for cuisine_name in cuisine %}
              <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
@@ -47,7 +47,7 @@
             <div class="col-6">
                 <label>Select Ingredients</label>
                 <br>
-                <select multiple id="ingred-id" name='ingredients-select' class="form-control form-control-lg" data-placeholder="Begin typing find ingredients...">
+                <select multiple id="ingred-id" name='ingredients-select' class="form-control form-control-lg" data-placeholder="Begin typing find ingredients..." required>
                 {% for ingredient in ingredients %}
                 <option name='{{ingredient._id}}' value="{{ingredient._id}}">{{ingredient.ingredient}}</option>
                 {% endfor %}
