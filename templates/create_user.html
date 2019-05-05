@@ -1,28 +1,29 @@
 {% extends 'base.html'%} {% block content %}
-<div class="center-hor top-margin">
-  <h1>Create User Account</h>
-</div>
-  <form action="{{url_for('register')}}" method="POST" class="col-12 center-hor">
-    <div class="row">
-      <div class="form-group">
-        <label for="uname">Your Username</label>
-        <input id="uname" name="username" type="text" class="form-control form-control-lg" required>
+<div class="center">
+  <h1>Create User Account</h1>
+
+    <form action="{{url_for('register')}}" method="POST" class="col-12">
+      <div class="row">
+        <div class="form-group">
+          <label for="uname">Your Username</label>
+          <input id="uname" name="username" type="text" class="form-control form-control-lg" required>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="form-group">
-        <label for="country">Your Country</label>
-        <select id="country" name="country_name" class="form-control form-control-lg">
+      <div class="row">
+        <div class="form-group">
+          <label for="country">Your Country</label>
+          <select id="country" name="country_name" class="form-control form-control-lg">
             <option value="" disabled selected>Choose Country</option>
             {% for country_name in countries %}
               <option value="{{country_name.country_name}}">{{country_name.country_name}}</option>
             {% endfor %}
           </select>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
-    </div>
-  </form>
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+      </div>
+    </form>
+</div>
 
 {% endblock %}

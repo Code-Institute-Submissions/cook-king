@@ -138,7 +138,7 @@ def edit_recipe(recipe_id):
 def user_recipes(name):
     name = session['username']
     # user = mongo.db.users.find_one(name = session['username'])
-    recipes =   mongo.db.recipes.find({ 'author' : {  name } })
+    recipes =   mongo.db.recipes.find({ 'author' :  name  })
     return render_template('user_recipes.html',  name=name, recipes=recipes)
     
     
