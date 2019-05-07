@@ -3,18 +3,10 @@
     <div class="col-12">
         <form class="form-inline filter-margin" action="{{url_for('filter_recipes')}}"method='POST'>
             <div class="col-2 offset-2">
-                <select name="name" class="form-control form-control-lg" >
+                <select name="author" class="form-control form-control-lg" >
                     <option disabled selected>Filter by User</option>
                     {% for name in users %}
                       <option value="{{name.name}}">{{name.name}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-2">
-                <select name="allergens" class="form-control form-control-lg">
-                    <option disabled selected>Filter by Allergen</option>
-                    {% for allergen in allergens %}
-                      <option value="{{allergen._id}}" name={{allergen._id}}>{{allergen.allergen_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -23,6 +15,14 @@
                     <option disabled selected>Filter by Cuisine</option>
                     {% for cuisine_name in cuisine %}
                       <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-2">
+                <select name="allergens" id="allergen-filter"  class="form-control form-control-lg">
+                    <option disabled selected>Filter by Allergen</option>
+                    {% for allergen in allergens %}
+                      <option value="{{allergen._id}}" name={{allergen._id}}>{{allergen.allergen_name}}</option>
                     {% endfor %}
                 </select>
             </div>

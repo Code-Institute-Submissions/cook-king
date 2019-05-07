@@ -15,6 +15,7 @@ mongo = PyMongo(app)
 app.secret_key=os.environ.get('SECRET_KEY')
 
 @app.route('/')
+# home page displays all recipes
 @app.route('/recipes')
 def recipes():
     # check if there is a user in session then flashes
@@ -32,13 +33,20 @@ def recipes():
                            users=users,
                            allergens=allergens,
                            cuisine=cuisine)
-                           
+       
+# user filters/search                
 @app.route('/filter_recipes', methods=['POST', 'GET'])
 def filter_recipes():
     if request.method == 'POST':
-        filter = {} 
         filter_input = request.form
-        filter = filter_input
+        filter = []
+        filter_a = request.form.get('author')
+        filter.append({'author': filter_a})
+        filter_b = request.form.get('cuisine')
+        filter.append({'cuisine': filter_b})
+        filter_c = request.form.get('allergens')
+        filter.append({'allergens': filter_c})
+        # filter = [{'author': 'test'},{'cuisine':'Thai'}]
         print(filter)
         filter_recipes = mongo.db.recipes.find({'$and': filter})
         # recipes=mongo.db.recipes.find()
@@ -63,14 +71,14 @@ def login():
         # if there is no user by that name and invalid user flash happens   
         flash("Invalid Log In")
     return render_template('login.html')
-    
+# logout  
 @app.route('/logout')
 def logout():
     # session is false, and user is logged out
     session['username'] = False
     flash("You were successfully logged out")
     return render_template('login.html') 
-
+# register
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
@@ -91,7 +99,7 @@ def register():
                            countries=mongo.db.countries.find())
 
 
-
+# create recipe
 @app.route('/add_recipe', methods=['GET','POST'])
 def add_recipe():
     recipes = mongo.db.recipes
@@ -160,6 +168,7 @@ def edit_recipe(recipe_id):
     ingredients = mongo.db.ingredients.find()
     return render_template('edit_recipe.html', recipe=the_recipe, cuisine=mongo.db.cuisine.find(), allergens=allergens, ingredients=ingredients)
     
+# user page displays all their recipes
 @app.route('/user/<name>')
 def user_recipes(name):
     name = session['username']
@@ -167,7 +176,7 @@ def user_recipes(name):
     recipes =   mongo.db.recipes.find({ 'author' :  name  })
     return render_template('user_recipes.html',  name=name, recipes=recipes)
     
-    
+# update recipes
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipe = mongo.db.recipes
