@@ -12,7 +12,11 @@ a:link {
     font-size: 3rem;
 }
 
-
+.form-inline {  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
 
 .ingredients-bg {
     background: #4FFF8A;
@@ -45,7 +49,10 @@ a:link {
 .small-margin {
     margin-top: 1em;
 }
-
+.filter-margin {
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
 .logo {
     height: 55px;
 }

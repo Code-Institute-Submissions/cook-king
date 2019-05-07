@@ -25,10 +25,10 @@
             <div class="form-group col-6">
                 <label for="cusinen">Cuisine</label>
                 <select id="cuisinen" name="cuisine" class="form-control form-control-lg" required>
-            <option value="" disabled selected>Choose Cuisine</option>
-            {% for cuisine_name in cuisine %}
-              <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
-            {% endfor %}
+                <option value="" disabled selected>Choose Cuisine</option>
+                {% for cuisine_name in cuisine %}
+                <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
+                {% endfor %}
             </select>
             </div>
         </div>

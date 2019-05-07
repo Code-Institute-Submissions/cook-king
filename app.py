@@ -21,10 +21,36 @@ def recipes():
     if 'username' in session:
         flash('You were successfully logged in')
     recipes=mongo.db.recipes.find()
+    users=mongo.db.users.find()
+    allergens=mongo.db.allergens.find()
+    cuisine=mongo.db.cuisine.find()
     print(recipes)
+    # import pdb; pdb.set_trace()
+    print(users)
     return render_template("recipes.html", 
-                           recipes=recipes)
-     
+                           recipes=recipes,
+                           users=users,
+                           allergens=allergens,
+                           cuisine=cuisine)
+                           
+@app.route('/filter_recipes', methods=['POST', 'GET'])
+def filter_recipes():
+    if request.method == 'POST':
+        filter = {} 
+        filter_input = request.form
+        filter = filter_input
+        print(filter)
+        filter_recipes = mongo.db.recipes.find({'$and': filter})
+        # recipes=mongo.db.recipes.find()
+        users=mongo.db.users.find()
+        allergens=mongo.db.allergens.find()
+        cuisine=mongo.db.cuisine.find()
+    return render_template("recipes.html", 
+                           recipes=filter_recipes,
+                           users=users,
+                           allergens=allergens,
+                           cuisine=cuisine)
+    
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
