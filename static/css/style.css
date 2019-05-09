@@ -114,7 +114,9 @@ a:link {
     /*height: 20em;*/
 }
 
-
+.upvote:hover {
+    color: #E54725;
+}
 
 .center {
     left: 50%;

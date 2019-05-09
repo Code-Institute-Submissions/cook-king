@@ -46,6 +46,7 @@
         <div class="row">
             <div class="recipe-links col-4">Author: {{recipes.author}}</div>
             <div class="recipe-links col-4">Cuisine: {{recipes.cuisine}}</div>
+            <i class="upvote material-icons col-4">arrow_upward</i>
         </div>
         <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
             <div class="description-text">{{recipes.recipe_description|truncate(100)}}
