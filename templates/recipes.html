@@ -1,7 +1,7 @@
 {% extends 'base.html'%} {% block content %}
 <div class="row">
     <div class="col-12">
-        <form class="form-inline filter-margin" action="{{url_for('filter_recipes')}}" method='POST'>
+        <form class="form-inline filter-margin" action="{{url_for('filter_recipes')}}" id='filter-form' method='POST'>
             <div class="col-3">
                 <select name="author" class="form-control form-control-lg">
                     <option disabled selected>Filter by User</option>
@@ -29,6 +29,7 @@
             </div>
             <div class="col-2">
                 <button type="submit" class="btn btn-primary btn-lg">Filter</button>
+                <button type="reset" class="btn btn-danger btn-lg">Clear</button>
             </div>
         </form>
     </div>
