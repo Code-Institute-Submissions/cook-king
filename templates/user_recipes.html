@@ -1,36 +1,30 @@
 {% extends 'base.html'%} {% block content %}
-
-    <div class="row">
-        <div class="col-12">
-            <div class="row container-fluid">
-                <i class="icon-size material-icons">account_circle</i>
-                <h1>{{name}}</h1>
-            </div>
-            These are your recipes!
+<div class="row">
+    <div class="col-12">
+        <div class="row container-fluid">
+            <i class="icon-size material-icons">account_circle</i>
+            <h1>{{name}}</h1>
         </div>
+        These are your recipes!
     </div>
-    <div class="row small-margin">
-        {% for recipes in recipes %}
-        <div class="col-sm-12 col-lg-3">
-
-            <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
-                <h5>{{recipes.recipe_name}}</h5>
-            </a>
-            <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}"> 
-            <img src={{recipes.recipe_image}} class='recipe-images' /></a>
-            <div class="row">
-                <div class="recipe-links col-4">Cuisine: {{recipes.cuisine}}</div>
-            </div>
-            <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
-                <div class="description-text">{{recipes.recipe_description|truncate(100)}}
-                </div>
-            </a>
-            </a>
-            
-        </div>
-
-    </div>
-
-{% endfor %}
 </div>
+<div class="row small-margin">
+    {% for recipes in recipes %}
+    <div class="col-sm-12 col-lg-3">
+        <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
+            <h5>{{recipes.recipe_name}}</h5>
+        </a>
+        <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}"> 
+            <img src={{recipes.recipe_image}} class='recipe-images' /></a>
+        <div class="row">
+            <div class="recipe-links col-4">Cuisine: {{recipes.cuisine}}</div>
+        </div>
+        <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
+            <div class="description-text">{{recipes.recipe_description|truncate(100)}}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
