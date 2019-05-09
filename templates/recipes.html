@@ -1,7 +1,7 @@
 {% extends 'base.html'%} {% block content %}
 <div class="row">
     <div class="col-12">
-        <form class="form-inline filter-margin" action="{{url_for('filter_recipes')}}" id='filter-form' method='POST'>
+        <form class="form-inline filter-margin" action="{{url_for('recipes')}}" id='filter-form' method='POST'>
             <div class="col-3">
                 <select name="author" class="form-control form-control-lg">
                     <option disabled selected>Filter by User</option>
@@ -23,33 +23,36 @@
                 <div class="form-group">
                     {% for allergen in allergens %}
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name={{allergen._id}} value="{{allergen.allergen_name}}">
+                        <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name='allergens' value="{{allergen._id}}">
                         <label for=id_{{allergen.allergen_name}}>{{allergen.allergen_name}}</label>
-                    </div>{% endfor %}</div>
+                    </div>{% endfor %}
+                </div>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <button type="submit" class="btn btn-primary btn-lg">Filter</button>
+            </div>
+            <div class="col-1">
                 <button type="reset" class="btn btn-danger btn-lg">Clear</button>
             </div>
         </form>
     </div>
 </div>
 <div class="row">
-    {% for recipes in recipes %}
+    {% for recipe in recipes %}
     <div class="col-sm-12 col-lg-3">
         <!--<div class="container-fluid">-->
-        <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
-            <h5>{{recipes.recipe_name}}</h5>
+        <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
+            <h5>{{recipe.recipe_name}}</h5>
         </a>
-        <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}"> 
-            <img src={{recipes.recipe_image}} class='recipe-images' /></a>
+        <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}"> 
+            <img src={{recipe.recipe_image}} class='recipe-images' /></a>
         <div class="row">
-            <div class="recipe-links col-4">Author: {{recipes.author}}</div>
-            <div class="recipe-links col-4">Cuisine: {{recipes.cuisine}}</div>
+            <div class="recipe-links col-4">Author: {{recipe.author}}</div>
+            <div class="recipe-links col-4">Cuisine: {{recipe.cuisine}}</div>
             <i class="upvote material-icons col-4">arrow_upward</i>
         </div>
-        <a href="{{url_for('open_recipe', recipe_id=recipes._id)}}" class="recipe-links">
-            <div class="description-text">{{recipes.recipe_description|truncate(100)}}
+        <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
+            <div class="description-text">{{recipe.recipe_description|truncate(100)}}
             </div>
         </a>
         </a>

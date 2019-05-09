@@ -16,48 +16,102 @@ app.secret_key=os.environ.get('SECRET_KEY')
 
 @app.route('/')
 # home page displays all recipes
-@app.route('/recipes')
+@app.route('/recipes', methods=['POST', 'GET'])
 def recipes():
     # check if there is a user in session then flashes
     if 'username' in session:
         flash('You were successfully logged in')
-    recipes=mongo.db.recipes.find()
-    users=mongo.db.users.find()
-    allergens=mongo.db.allergens.find()
-    cuisine=mongo.db.cuisine.find()
-    print(recipes)
-    # import pdb; pdb.set_trace()
-    print(users)
-    return render_template("recipes.html", 
-                           recipes=recipes,
-                           users=users,
-                           allergens=allergens,
-                           cuisine=cuisine)
-       
-# user filters/search                
-@app.route('/filter_recipes', methods=['POST', 'GET'])
-def filter_recipes():
     if request.method == 'POST':
-        filter_input = request.form
-        filter = []
-        filter_a = request.form.get('author')
-        filter.append({'author': filter_a})
-        filter_b = request.form.get('cuisine')
-        filter.append({'cuisine': filter_b})
-        filter_c = request.form.get('allergens')
-        filter.append({'allergens': filter_c})
-        # filter = [{'author': 'test'},{'cuisine':'Thai'}]
-        print(filter)
-        filter_recipes = mongo.db.recipes.find({'$and': filter})
+        # need this variable set
+        filter_allergen = ''
+        
+        # pulling data out as a dict
+        filter_by = request.form.to_dict()
+        
+        print('before try',filter_by)
+        
+        try:
+            #filter_allergen = filter_by['allergen']
+            # getting allergens as a list
+            filter_allergen = request.form.getlist('allergen')
+            print('Here i am',filter_allergen)
+            
+            #removing allergens from filter_by
+            del(filter_by['allergen'])
+        except:
+            pass
+            
+        # passing filter_by into the $and part and allergens into the $ne part and telling it its for key allergens
+        recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$ne': filter_allergen}}]})
+        
+        #print(list(recipes))
         # recipes=mongo.db.recipes.find()
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
         cuisine=mongo.db.cuisine.find()
-    return render_template("recipes.html", 
-                           recipes=filter_recipes,
-                           users=users,
-                           allergens=allergens,
-                           cuisine=cuisine)
+        
+        return render_template('recipes.html', recipes=recipes, users=users, allergens=allergens, cuisine=cuisine)
+        
+    else:
+        
+        recipes=mongo.db.recipes.find()
+        users=mongo.db.users.find()
+        allergens=mongo.db.allergens.find()
+        cuisine=mongo.db.cuisine.find()
+        print(recipes)
+        # import pdb; pdb.set_trace()
+        print(users)
+        return render_template("recipes.html", 
+                               recipes=recipes,
+                               users=users,
+                               allergens=allergens,
+                               cuisine=cuisine)
+
+
+
+
+
+
+
+     
+# user filters/search                
+@app.route('/filter_recipes', methods=['POST', 'GET'])
+def filter_recipes():
+    if request.method == 'POST':
+        # need this variable set
+        filter_allergen = ''
+        
+        # pulling data out as a dict
+        filter_by = request.form.to_dict()
+        
+        print('before try',filter_by)
+        
+        try:
+            #filter_allergen = filter_by['allergen']
+            # getting allergens as a list
+            filter_allergen = request.form.getlist('allergen')
+            print('Here i am',filter_allergen)
+            
+            #removing allergens from filter_by
+            del(filter_by['allergen'])
+        except:
+            pass
+            
+        # passing filter_by into the $and part and allergens into the $ne part and telling it its for key allergens
+        recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$ne': filter_allergen}}]})
+        
+        #print(list(recipes))
+        # recipes=mongo.db.recipes.find()
+        users=mongo.db.users.find()
+        allergens=mongo.db.allergens.find()
+        cuisine=mongo.db.cuisine.find()
+        
+        return redirect(url_for('recipes', users=users, recipes=recipes, allergens=allergens, cuisine=cuisine))#render_template("recipes.html", 
+                            #   recipes=filtered,
+                            #   users=users,
+                            #   allergens=allergens,
+                            #   cuisine=cuisine)
+    
     
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -71,6 +125,7 @@ def login():
         # if there is no user by that name and invalid user flash happens   
         flash("Invalid Log In")
     return render_template('login.html')
+    
 # logout  
 @app.route('/logout')
 def logout():
@@ -78,6 +133,7 @@ def logout():
     session['username'] = False
     flash("You were successfully logged out")
     return render_template('login.html') 
+    
 # register
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -166,7 +222,11 @@ def edit_recipe(recipe_id):
     the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     allergens = mongo.db.allergens.find()
     ingredients = mongo.db.ingredients.find()
-    return render_template('edit_recipe.html', recipe=the_recipe, cuisine=mongo.db.cuisine.find(), allergens=allergens, ingredients=ingredients)
+    return render_template('edit_recipe.html', 
+                            recipe=the_recipe, 
+                            cuisine=mongo.db.cuisine.find(), 
+                            allergens=allergens, 
+                            ingredients=ingredients)
     
 # user page displays all their recipes
 @app.route('/user/<name>')
@@ -174,7 +234,8 @@ def user_recipes(name):
     name = session['username']
     # user = mongo.db.users.find_one(name = session['username'])
     recipes =   mongo.db.recipes.find({ 'author' :  name  })
-    return render_template('user_recipes.html',  name=name, recipes=recipes)
+    return render_template('user_recipes.html',  
+                            name=name, recipes=recipes)
     
 # update recipes
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
