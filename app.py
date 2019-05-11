@@ -27,22 +27,22 @@ def recipes():
         
         # pulling data out as a dict
         filter_by = request.form.to_dict()
-        
+        print('full', filter_by)
         # print('before try',filter_by)
         
         try:
             #filter_allergen = filter_by['allergen']
             # getting allergens as a list
-            filter_allergen = request.form.getlist('allergen')
-            # print('Here i am',filter_allergen)
+            filter_allergen = request.form.getlist('allergens')
+            print('Here i am',filter_allergen)
             
             #removing allergens from filter_by
-            del(filter_by['allergen'])
+            del(filter_by['allergens'])
         except:
             pass
-            
+            # 5cb78bc91c9d440000423107  - milk
         # passing filter_by into the $and part and allergens into the $ne part and telling it its for key allergens
-        recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$ne': filter_allergen}}]})
+        recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
         
         #print(list(recipes))
         # recipes=mongo.db.recipes.find()
