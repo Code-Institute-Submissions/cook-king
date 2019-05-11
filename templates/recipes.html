@@ -53,7 +53,7 @@
         <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}"> 
             <img src={{recipe.recipe_image}} class='recipe-images' /></a>
         <div class="row">
-            <div class="recipe-links col-4">Author: {{recipe.author}}</div>
+            <div class="recipe-links col-4"><a href="{{url_for('user_recipes', name=recipe.author)}}" class="recipe-links">Author: {{recipe.author}}</a></div>
             <div class="recipe-links col-4">Cuisine: {{recipe.cuisine}}</div>
             <i class="upvote material-icons col-4">arrow_upward</i>
         </div>
