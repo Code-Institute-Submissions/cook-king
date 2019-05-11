@@ -24,7 +24,7 @@
                 <div class="form-group">
                     {% for allergen in allergens %}
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" class="form-check-input checkbox-phone" id="id_{{allergen.allergens}}" name='allergens' value="{{allergen._id}}">
+                        <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name='allergens' value="{{allergen._id}}">
                         <label for=id_{{allergen.allergen_name}}>{{allergen.allergen_name}}</label>
                     </div>{% endfor %}
                 </div>

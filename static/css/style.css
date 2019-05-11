@@ -3,8 +3,9 @@ a:link {
 }
 
 input[type=checkbox] {
-    zoom: 2.2;
+    zoom: 2.9;
 }
+
 
 .filter-mobile-margin {
     margin-bottom: 1.5rem;
@@ -160,7 +161,15 @@ input[type=checkbox] {
 }
 
 /* MEDIA QUERIES*/
+/*tablet*/
+@media only screen and (min-width: 768px) {
+    input[type=checkbox] {
+        zoom: 2.5;
+    }
+}
 
+
+/*computer*/
 @media only screen and (min-width: 992px) {
     input[type=checkbox] {
         zoom: 1;
