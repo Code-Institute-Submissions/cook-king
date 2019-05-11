@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col-12">
         <button id="hide-show-filters" class="btn btn-info btn-lg hide-show-margin">Hide/Show Filters</button>
-        <form class="form-inline filter-margin" action="{{url_for('recipes')}}" id='filter-form' method='POST'>
-            <div class="col-lg-2 col-sm-4">
+        <form class="form-inline filter-margin filter-center" action="{{url_for('recipes')}}" id='filter-form' method='POST'>
+            <div class="col-lg-2 col-sm-6">
                 <select name="author" class="form-control form-control-lg">
                     <option disabled selected>Filter by User</option>
                     {% for name in users %}
@@ -11,7 +11,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-lg-2 col-sm-4">
+            <div class="col-lg-2 col-sm-6">
                 <select name="cuisine" class="form-control form-control-lg">
                     <option disabled selected>Filter by Cuisine</option>
                     {% for cuisine_name in cuisine %}

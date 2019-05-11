@@ -7,12 +7,18 @@ input[type=checkbox] {
 }
 
 .filter-mobile-margin {
-    /*margin-bottom: 1rem;*/
-    /*margin-left:auto;*/
-    /*margin-top: 1rem;*/
-    margin: 0 auto;
+    margin-bottom: 1.5rem;
+    /*margin-left:1.5;*/
+    margin-top: 1.5rem;
+    /*margin: 2rem;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    
 }
-
+.filter-center {
+    margin: 0 auto;
+    width: 80%;
+}
 .allergen-ingredients {
     display: inline-block;
 
