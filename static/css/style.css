@@ -2,6 +2,17 @@ a:link {
     text-decoration: none;
 }
 
+input[type=checkbox] {
+    zoom: 2.2;
+}
+
+.filter-mobile-margin {
+    /*margin-bottom: 1rem;*/
+    /*margin-left:auto;*/
+    /*margin-top: 1rem;*/
+    margin: 0 auto;
+}
+
 .allergen-ingredients {
     display: inline-block;
 
@@ -14,10 +25,10 @@ a:link {
     font-size: 3rem;
 }
 
-.form-inline {  
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 
 .ingredients-bg {
@@ -51,24 +62,34 @@ a:link {
 .small-margin {
     margin-top: 1em;
 }
+
 .filter-margin {
     margin-bottom: 2em;
     margin-top: 1em;
 }
 
-/*this is for the form toggle on and off button*/
-#filter-form {
-/*display:none;*/
-/*display: inline-block;*/
+.hide-show-margin {
+    margin-top: .8em;
+    margin-bottom: .8em;
 }
+
+/*this is for the form toggle on and off button*/
+
+/*#filter-form {*/
+
+/*display:none;*/
+
+/*display: inline-block;*/
+
+/*}*/
 
 .logo {
     height: 55px;
 }
 
 .center-hor {
-    margin:0 auto;
-    
+    margin: 0 auto;
+
 }
 
 .container-recipes {
@@ -130,4 +151,12 @@ a:link {
     margin-left: -25%;
     position: absolute;
     margin-bottom: 1rem;
+}
+
+/* MEDIA QUERIES*/
+
+@media only screen and (min-width: 992px) {
+    input[type=checkbox] {
+        zoom: 1;
+    }
 }
