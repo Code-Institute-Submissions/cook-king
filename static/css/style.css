@@ -55,6 +55,13 @@ a:link {
     margin-bottom: 2em;
     margin-top: 1em;
 }
+
+/*this is for the form toggle on and off button*/
+#filter-form {
+/*display:none;*/
+/*display: inline-block;*/
+}
+
 .logo {
     height: 55px;
 }
