@@ -6,11 +6,6 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-# URI=os.environ.get('URI')
-# app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
-# mongo = PyMongo(app)
-
-# app.secret_key=os.environ.get('SECRET_KEY')
 
 # if its on cloud9 it takes enviromental variables from there, else takes them from the config variables on heroku
 if os.environ.get('C9_HOSTNAME'):
@@ -25,8 +20,6 @@ else:
     app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
     mongo = PyMongo(app)
     app.secret_key=os.environ.get('SECRET_KEY')
-
-# app.secret_key=os.environ.get('SECRET_KEY')
 
 @app.route('/')
 # home page displays all recipes
@@ -235,6 +228,18 @@ def update_recipe(recipe_id):
         mongo.db.recipes.update( {'_id': ObjectId(recipe_id)}, new_recipe)
     flash('Recipe succesfully edited')
     return redirect(url_for('recipes'))
+
+
+# upvotes
+# @app.route('/vote/<recipe_id>')
+# def upvote(recipe_id):
+#     if session['username']:
+#         recipe_vote =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+#         vote = {}
+        
+#         mongo.db.recipes.append( {'_id': ObjectId(recipe_id)}, vote)
+#         return redirect(url_for('recipes'))
+
 
 # session user page displays all their recipes
 @app.route('/user/<name>')
