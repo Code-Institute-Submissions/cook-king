@@ -2,17 +2,31 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
-import env
-
+#import env
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
-URI=os.environ.get('URI')
-app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
-mongo = PyMongo(app)
+# URI=os.environ.get('URI')
+# app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
+# mongo = PyMongo(app)
 
+# app.secret_key=os.environ.get('SECRET_KEY')
 
-app.secret_key=os.environ.get('SECRET_KEY')
+# if its on cloud9 it takes enviromental variables from there, else takes them from the config variables on heroku
+if os.environ.get('C9_HOSTNAME'):
+    import env
+    URI=os.environ.get('URI')
+    app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
+    mongo = PyMongo(app)
+    app.secret_key=os.environ.get('SECRET_KEY')
+    app.config['DEBUG']=True
+else:
+    URI=os.environ.get('URI')
+    app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
+    mongo = PyMongo(app)
+    app.secret_key=os.environ.get('SECRET_KEY')
+
+# app.secret_key=os.environ.get('SECRET_KEY')
 
 @app.route('/')
 # home page displays all recipes
@@ -21,6 +35,7 @@ def recipes():
     # check if there is a user in session then flashes
     if 'username' in session:
         flash('You were successfully logged in')
+
     if request.method == 'POST':
         # need this variable set
         filter_allergen = ''
@@ -40,7 +55,6 @@ def recipes():
             del(filter_by['allergens'])
         except:
             pass
-            # 5cb78bc91c9d440000423107  - milk
         # passing filter_by into the $and part and allergens into the $ne part and telling it its for key allergens
         recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
         
