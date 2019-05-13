@@ -55,14 +55,13 @@
         <div class="row">
             <div class="recipe-links col-4"><a href="{{url_for('user_recipes', name=recipe.author)}}" class="recipe-links">Author: {{recipe.author}}</a></div>
             <div class="recipe-links col-4">Cuisine: {{recipe.cuisine}}</div>
-            <!--<a href=""><i class="upvote material-icons col-4">arrow_upward</i></a>-->
-            <!--<p>{{recipe.upvotes}}</p>-->
+            <a href="{{url_for('vote', recipe_id=recipe._id)}}"><i class="upvote material-icons col-4">arrow_upward</i></a> {{recipe.votes}}
         </div>
-        <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
+        <form href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
             <div class="description-text">{{recipe.recipe_description|truncate(100)}}
             </div>
-        </a>
-        </a>
+            </a>
+            </a>
     </div>
     {% endfor %}
 </div>

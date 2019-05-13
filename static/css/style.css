@@ -7,6 +7,8 @@ input[type=checkbox] {
 }
 
 
+
+
 .filter-mobile-margin {
     margin-bottom: 1.5rem;
     /*margin-left:1.5;*/
@@ -14,12 +16,13 @@ input[type=checkbox] {
     /*margin: 2rem;*/
     /*display: flex;*/
     /*justify-content: center;*/
-    
 }
+
 .filter-center {
     margin: 0 auto;
     width: 80%;
 }
+
 .allergen-ingredients {
     display: inline-block;
 
@@ -148,9 +151,23 @@ input[type=checkbox] {
     object-fit: cover;
     /*height: 20em;*/
 }
+/* upvote button stlye*/
+
+/*.upvote {*/
+/*    background: none;*/
+/*    border: none;*/
+/*    padding: 0;*/
+/*    outline: none;*/
+/*    margin:0;*/
+/*}*/
+
+/*.upvote:onclick {*/
+/*    outline: none*/
+/*}*/
 
 .upvote:hover {
     color: #E54725;
+    outline: none
 }
 
 .center {
@@ -161,7 +178,9 @@ input[type=checkbox] {
 }
 
 /* MEDIA QUERIES*/
+
 /*tablet*/
+
 @media only screen and (min-width: 768px) {
     input[type=checkbox] {
         zoom: 2.5;
@@ -170,10 +189,9 @@ input[type=checkbox] {
 
 
 /*computer*/
+
 @media only screen and (min-width: 992px) {
     input[type=checkbox] {
         zoom: 1;
     }
 }
-
-
