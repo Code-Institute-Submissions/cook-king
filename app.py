@@ -203,7 +203,7 @@ def update_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     if request.method == 'POST':
 		# This is going to be passed into mongo
-        new_recipe = {'author': session['username'], "votes": recipe["votes"],}
+        new_recipe = {'author': session['username'], "votes": recipe["votes"], "voted": recipe["voted"]}
         recipe_allergens = []
         # ingredients = []
         recipe=request.form
@@ -237,9 +237,12 @@ def update_recipe(recipe_id):
 def vote(recipe_id):
     print(recipe_id)
     if session['username']:
-        print("reached here")
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}})
-        flash('Vote successful')
+         try:
+            mongo.db.recipes.find({'$and': [{"_id": ObjectId(recipe_id)}}, "voted": session['username']]})
+        except:
+            print("reached here")
+            mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}}, {"voted": session['username']})
+            flash('Vote successful')
     else:
         flash('You need to log in to vote')
     return redirect(url_for('recipes'))
