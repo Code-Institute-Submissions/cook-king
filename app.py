@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
-#import env
+
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
@@ -126,7 +126,7 @@ def register():
 def add_recipe():
     recipes = mongo.db.recipes
     if request.method == 'POST':
-        new_recipe = {'author': session['username'], 'votes': 0,}
+        new_recipe = {'author': session['username'], 'votes': 0, 'voted': []}
         recipe_allergens = []
         # ingredients = []
         recipe=request.form
@@ -241,7 +241,8 @@ def vote(recipe_id):
             mongo.db.recipes.find({'$and': [{"_id": ObjectId(recipe_id)}}, "voted": session['username']]})
         except:
             print("reached here")
-            mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}}, {"voted": session['username']})
+            mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}})
+            # {'voted': [session['username'],]}
             flash('Vote successful')
     else:
         flash('You need to log in to vote')
