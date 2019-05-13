@@ -237,13 +237,12 @@ def update_recipe(recipe_id):
 def vote(recipe_id):
     print(recipe_id)
     if session['username']:
-         try:
-            mongo.db.recipes.find({'$and': [{"_id": ObjectId(recipe_id)}}, "voted": session['username']]})
-        except:
-            print("reached here")
-            mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}})
-            # {'voted': [session['username'],]}
-            flash('Vote successful')
+         filter = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+         voted = filter['voted']
+         if not session['username'] in voted:
+             voted.append(session['username'])
+             mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}})
+             mongo.db.recipes.find_one_and_update({'_id': ObjectId(recipe_id)},{"$set": { "voted" : voted}}, upsert=True);
     else:
         flash('You need to log in to vote')
     return redirect(url_for('recipes'))
