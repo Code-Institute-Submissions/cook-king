@@ -48,7 +48,7 @@ def recipes():
             del(filter_by['allergens'])
         except:
             pass
-        # passing filter_by into the $and part and allergens into the $ne part and telling it its for key allergens
+        # passing filter_by into the $and part and allergens into the $nin part and telling it its for key allergens
         recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
         
         #print(list(recipes))
@@ -126,7 +126,7 @@ def register():
 def add_recipe():
     recipes = mongo.db.recipes
     if request.method == 'POST':
-        new_recipe = {'author': session['username'],}
+        new_recipe = {'author': session['username'], 'votes': 0,}
         recipe_allergens = []
         # ingredients = []
         recipe=request.form
@@ -173,7 +173,8 @@ def open_recipe(recipe_id):
         recipe_allergens.append(mongo.db.allergens.find_one({"_id": ObjectId(allergen_id)}))
     the_recipe["allergens"] = recipe_allergens
     the_recipe["ingredients"] = recipe_ingredients
-    return render_template('open_recipe.html', recipe=the_recipe)
+    return render_template('open_recipe.html', 
+                            recipe=the_recipe)
     
     
 # deletes the recipes
@@ -198,10 +199,11 @@ def edit_recipe(recipe_id):
 # update recipes
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    recipe = mongo.db.recipes
+    # recipe = mongo.db.recipes
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     if request.method == 'POST':
 		# This is going to be passed into mongo
-        new_recipe = {'author': session['username'],}
+        new_recipe = {'author': session['username'], "votes": recipe["votes"],}
         recipe_allergens = []
         # ingredients = []
         recipe=request.form
@@ -248,19 +250,7 @@ def user_recipes(name):
     return render_template('user_recipes.html',  
                             name=name, recipes=recipes)
 
-# other user pages
-# @app.route('/user/<name>')
-# def other_user_recipes(name):
-#     # name = recipe.authors
-#     # the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-#     name=the_recipe.author
-#     # # user = mongo.db.users.find_one(name = session['username'])
-#     recipes =   mongo.db.recipes.find({ 'author' :  name  })
-#     return render_template('user_recipes.html',  
-#                             name=name, recipes=recipes)
-    
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+            port=int(os.environ.get('PORT')))
