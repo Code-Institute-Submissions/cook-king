@@ -28,16 +28,13 @@ def recipes():
     # check if there is a user in session then flashes
     if 'username' in session:
         flash('You were successfully logged in')
-
     if request.method == 'POST':
         # need this variable set
         filter_allergen = ''
-        
         # pulling data out as a dict
         filter_by = request.form.to_dict()
         print('full', filter_by)
         # print('before try',filter_by)
-        
         try:
             #filter_allergen = filter_by['allergen']
             # getting allergens as a list
@@ -50,22 +47,24 @@ def recipes():
             pass
         # passing filter_by into the $and part and allergens into the $nin part and telling it its for key allergens
         recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
-        
+        count = mongo.db.recipes.count({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
+        print("HERE IT IS", count)
         #print(list(recipes))
         # recipes=mongo.db.recipes.find()
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
         cuisine=mongo.db.cuisine.find()
-        
         return render_template('recipes.html', 
                                 recipes=recipes, 
                                 users=users, 
                                 allergens=allergens, 
-                                cuisine=cuisine)
+                                cuisine=cuisine,
+                                count=count)
         
     else:
         
         recipes=mongo.db.recipes.find()
+        count = mongo.db.recipes.count()
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
         cuisine=mongo.db.cuisine.find()
@@ -76,7 +75,8 @@ def recipes():
                                recipes=recipes,
                                users=users,
                                allergens=allergens,
-                               cuisine=cuisine)
+                               cuisine=cuisine,
+                               count=count)
 
     
 @app.route('/login', methods=['POST', 'GET'])
