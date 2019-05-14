@@ -11,26 +11,28 @@ input[type=checkbox] {
 
 
 /*form centering*/
+
 main {
     display: flex;
 }
-.container-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.form-centering {
+/*.container-main {*/
 
-    position: absolute;
+/*    display: flex;*/
 
-    top: 50%;
+/*    justify-content: center;*/
 
-    left: 50%;
+/*    align-items: center;*/
 
-    transform: translate(-50%, -50%);
+/*}*/
 
-}
+/*.form-centering {*/
+    /*margin: 0 auto;*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+/*}*/
 
 /*filter-styles*/
 
@@ -231,5 +233,22 @@ main {
 @media only screen and (min-width: 992px) {
     input[type=checkbox] {
         zoom: 1;
+    }
+    .container-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-centering {
+
+        position: absolute;
+
+        top: 50%;
+
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
     }
 }
