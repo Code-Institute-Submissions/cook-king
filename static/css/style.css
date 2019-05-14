@@ -1,14 +1,39 @@
 a:link {
     text-decoration: none;
 }
+
 /*makes checkboxes bigger on mobile*/
+
 input[type=checkbox] {
     zoom: 2.9;
 }
 
 
 
+/*form centering*/
+main {
+    display: flex;
+}
+.container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.form-centering {*/
+
+/*    position: absolute;*/
+
+/*    top: 50%;*/
+
+/*    left: 50%;*/
+
+/*    transform: translate(-50%, -50%);*/
+
+/*}*/
+
 /*filter-styles*/
+
 .filter-mobile-margin {
     margin-bottom: 1.5rem;
     /*margin-left:1.5;*/
@@ -22,7 +47,9 @@ input[type=checkbox] {
     margin: 0 auto;
     width: 80%;
 }
+
 /*makes filter form inline*/
+
 .form-inline {
     display: flex;
     flex-flow: row wrap;
@@ -31,6 +58,7 @@ input[type=checkbox] {
 
 
 /*open recipe styles*/
+
 .allergen-ingredients {
     display: inline-block;
 
@@ -82,6 +110,7 @@ input[type=checkbox] {
     margin-top: .8em;
     margin-bottom: .8em;
 }
+
 /* open recipe page*/
 
 .author-name {
@@ -131,7 +160,9 @@ input[type=checkbox] {
 /*}*/
 
 /*.logo {*/
+
 /*    height: 55px;*/
+
 /*}*/
 
 .center-hor {
@@ -153,15 +184,23 @@ input[type=checkbox] {
 /* upvote button stlye*/
 
 /*.upvote {*/
+
 /*    background: none;*/
+
 /*    border: none;*/
+
 /*    padding: 0;*/
+
 /*    outline: none;*/
+
 /*    margin:0;*/
+
 /*}*/
 
 /*.upvote:onclick {*/
+
 /*    outline: none*/
+
 /*}*/
 
 .upvote:hover {
