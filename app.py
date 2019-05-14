@@ -46,8 +46,9 @@ def recipes():
         except:
             pass
         # passing filter_by into the $and part and allergens into the $nin part and telling it its for key allergens
-        recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
+        recipes = mongo.db.recipes.find({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]}).sort("votes", -1)
         count = mongo.db.recipes.count({'$and':[filter_by,{'allergens': {'$nin' : filter_allergen}}]})
+        # mongo.db.musicians.find( ).sort( { name: -1 } )
         print("HERE IT IS", count)
         #print(list(recipes))
         # recipes=mongo.db.recipes.find()
@@ -63,7 +64,7 @@ def recipes():
         
     else:
         
-        recipes=mongo.db.recipes.find()
+        recipes=mongo.db.recipes.find().sort("votes", -1)
         count = mongo.db.recipes.count()
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
