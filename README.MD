@@ -46,10 +46,10 @@ I created test recipes, voted on them and edited them, to make sure they kept th
 I voted on recipes in different accounts to make sure I could only vote once on each.
 I deleted recipes.
 I filtered by every filter and combination of filters, to check that they were working correctly and the count was correct.
+
+Errors:
 <h6>IMPORTANT: There is one glitch, the multi select jquery plugin chosen, that I use doesn't work or display on mobile, 
 as such when using developer tools you need to refresh the page so that it realises you are on mobile. This will allow it to display a normal multi-select</h6>
-
-Errors: <br>The only error that remains is an "Uncaught TypeError: Cannot read property 'split' of undefined" that does not effect functionality at all, <br>this seems to be linked to the toggle strict button that I used instead of the standard implementation, as it ussually only happens if you toggle strict off after toggling it on, <br>I fixed this by using a more normal strict mode implementation, <br>but chose to just leave it as it was for deployment because I liked the toggle button functionality and aesthetic.
 
 <h2>Deployment</h2> Site was created in the cloud9 IDE. Then it was published to Heroku. <a href="http://cooking-app-doug.herokuapp.com/add_recipe" target="_blank">Link to Heroku Deployment</a>
 
