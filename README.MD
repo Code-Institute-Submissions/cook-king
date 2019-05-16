@@ -69,6 +69,8 @@ Errors:
 Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.
 <h6>IMPORTANT: There is one glitch, the multi select jquery plugin chosen, that I use doesn't work or display on mobile, 
 as such when using developer tools you need to refresh the page so that it realises you are on mobile. This will allow it to display a normal multi-select</h6>
+<h2>Accessibility</h2>
+added alt to images for the visually impaired.
 
 <h2>Deployment</h2> Site was created in the cloud9 IDE. Then it was published to Heroku. <a href="http://cooking-app-doug.herokuapp.com/add_recipe" target="_blank">Link to Heroku Deployment</a>
 
