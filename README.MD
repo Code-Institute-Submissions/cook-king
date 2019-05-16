@@ -41,10 +41,15 @@ as such when using developer tools you need to refresh the page so that it reali
 
 <h2>Testing</h2> 
 I tested this project manually using developer tools and various devices.
+<br>
 I checked every page on desktop, mobile and tablet modes to make sure they displayed correctly.
+<br>
 I created test recipes, voted on them and edited them, to make sure they kept their votes.
+<br>
 I voted on recipes in different accounts to make sure I could only vote once on each.
+<br>
 I deleted recipes.
+<br>
 I filtered by every filter and combination of filters, to check that they were working correctly and the count was correct.
 
 Errors:
