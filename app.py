@@ -250,7 +250,7 @@ def vote(recipe_id):
              mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, {'$inc': {'votes': 1}})
              mongo.db.recipes.find_one_and_update({'_id': ObjectId(recipe_id)},{"$set": { "voted" : voted}}, upsert=True);
     else:
-        flash('You need to log in to vote')
+        flash(u'You need to log in to vote', 'error')
     return redirect(url_for('recipes'))
 
 

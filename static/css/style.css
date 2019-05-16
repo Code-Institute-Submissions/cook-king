@@ -24,10 +24,10 @@ main {
     /*display: inline-block;*/
 
 }
-
-/*.form-centering {*/
-/*    width: 50%;!important*/
-/*}*/
+.error {
+    color: red;
+    
+}
 
 /*filter-styles*/
 

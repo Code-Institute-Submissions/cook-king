@@ -35,10 +35,10 @@
 
     <main>
         <div class="container-fluid margin">
-            {% with messages = get_flashed_messages() %} {% if messages %}
-            <div class="flashes margin-top">
-                {% for message in messages %}
-                <h6>{{ message }}</h6>
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+            <div class=flashes>
+                {% for category, message in messages %}
+                <h6 class="{{ category }}">{{ message }}</h6>
                 {% endfor %}
             </div>
             {% endif %} {% endwith %} {% block content %} {% endblock %}
