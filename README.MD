@@ -61,7 +61,7 @@ I created test recipes, voted on them and edited them, to make sure they kept th
 <br>
 I voted on recipes in different accounts to make sure I could only vote once on each.
 <br>
-I deleted recipes.
+I deleted recipes, to see that they actually got deleted.
 <br>
 I filtered by every filter and combination of filters, to check that they were working correctly and the count was correct.
 
