@@ -22,9 +22,9 @@ as such when using developer tools you need to refresh the page so that it reali
 <h2> Features </h2>
 
 <ul> 
-<li>Recipe website integraded with a mongodb database</li> 
-<li>Users can create and edit their own recipes</li> 
+<li>Recipe website integrated with a mongodb database</li> 
 <li>Users can create an account</li> 
+<li>Users can create and edit their own recipes</li> 
 <li>Simple and effective design</li> 
 </ul>
 
