@@ -8,18 +8,15 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cooking'
 
 # if its on cloud9 it takes enviromental variables from there, else takes them from the config variables on heroku
+URI=os.environ.get('URI')
+app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
+mongo = PyMongo(app)
+app.secret_key=os.environ.get('SECRET_KEY')
 if os.environ.get('C9_HOSTNAME'):
     import env
-    URI=os.environ.get('URI')
-    app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
-    mongo = PyMongo(app)
-    app.secret_key=os.environ.get('SECRET_KEY')
     app.config['DEBUG']=True
-else:
-    URI=os.environ.get('URI')
-    app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
-    mongo = PyMongo(app)
-    app.secret_key=os.environ.get('SECRET_KEY')
+
+
 
 @app.route('/')
 # home page displays all recipes
@@ -68,6 +65,9 @@ def recipes():
         
         recipes=mongo.db.recipes.find().sort("votes", -1)
         count = mongo.db.recipes.count()
+        # if no results
+        if count == 0: 
+            count="There are no"
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
         cuisine=mongo.db.cuisine.find()
