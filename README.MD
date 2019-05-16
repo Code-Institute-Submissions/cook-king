@@ -35,7 +35,7 @@ as such when using developer tools you need to refresh the page so that it reali
 <li>MongoDB</li>
 <li>Python</li>
 <li>Flask</li>
-<ol><li>flask session</li>
+<ol>
 <li>render_template</li>
 <li>redirect</li>
 <li>request</li>
@@ -43,6 +43,8 @@ as such when using developer tools you need to refresh the page so that it reali
 <li>session</li>
 <li>flash</li>
 </ol>
+<li>Pymongo</li>
+<li>bson.objectid</li>
 <li>Bootstrap</li>
 <li>Javascript</li>
 <li>Material Icons</li>
