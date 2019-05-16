@@ -17,16 +17,20 @@ main {
 }
 
 .form-centering {
-    /*margin-left: 15%;*/
-    /*margin-right: 15%;*/
     width: 70%;
     margin: 0 auto;
-    /*display: inline-block;*/
-
 }
+
+.form-center-log {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .error {
     color: red;
-    
+
 }
 
 /*filter-styles*/
@@ -52,7 +56,6 @@ main {
     flex-flow: row wrap;
     align-items: center;
 }
-
 
 /*open recipe styles*/
 
@@ -224,7 +227,6 @@ main {
         display: inline-block;
 
     }
-
     .recipe-links {
         color: black;
         font-size: 1rem;
