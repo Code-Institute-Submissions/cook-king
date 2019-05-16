@@ -43,13 +43,13 @@
         </form>
     </div>
 </div>
-<span>{{count}} results found</span>
+<span class="results-found">{{count}} results found</span>
 <div class="row">
     {% for recipe in recipes %}
     <div class="col-sm-12 col-lg-3 margin">
         <!--<div class="container-fluid">-->
         <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
-            <h5>{{recipe.recipe_name}}</h5>
+            <h3>{{recipe.recipe_name}}</h3>
         </a>
         <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}"> 
             <img src={{recipe.recipe_image}} onerror="this.src='https://www.sweetsquared.ie/sca-dev-kilimanjaro/img/no_image_available.jpeg?resizeid=19&resizeh=1200&resizew=1200'" class='recipe-images' /></a>

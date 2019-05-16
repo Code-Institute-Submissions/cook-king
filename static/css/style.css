@@ -95,6 +95,10 @@ main {
     color: black;
 }
 
+.results-found {
+    font-size: 1.75rem;
+}
+
 .top-margin {
     margin-top: 15em;
 }
@@ -251,4 +255,10 @@ main {
         transform: translate(-50%, -50%);
 
     }
+    
+    
+    
+    .results-found {
+    font-size: 1.25rem;
+}
 }
