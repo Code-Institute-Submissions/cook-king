@@ -22,8 +22,6 @@ else:
     mongo = PyMongo(app)
     app.secret_key=os.environ.get('SECRET_KEY')
 
-
-
 @app.route('/')
 # home page displays all recipes
 @app.route('/recipes', methods=['POST', 'GET'])

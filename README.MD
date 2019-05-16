@@ -66,6 +66,7 @@ I deleted recipes, to see that they actually got deleted.
 I filtered by every filter and combination of filters, to check that they were working correctly and the count was correct.
 
 Errors:
+Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.
 <h6>IMPORTANT: There is one glitch, the multi select jquery plugin chosen, that I use doesn't work or display on mobile, 
 as such when using developer tools you need to refresh the page so that it realises you are on mobile. This will allow it to display a normal multi-select</h6>
 
