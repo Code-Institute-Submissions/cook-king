@@ -32,6 +32,17 @@ as such when using developer tools you need to refresh the page so that it reali
 
 <ul> <li>Html 5</li> 
 <li>Css</li> 
+<li>MongoDB</li>
+<li>Python</li>
+<li>Flask</li>
+<ol><li>flask session</li>
+<li>render_template</li>
+<li>redirect</li>
+<li>request</li>
+<li>url_for</li> 
+<li>session</li>
+<li>flash</li>
+</ol>
 <li>Bootstrap</li>
 <li>Javascript</li>
 <li>Material Icons</li>
