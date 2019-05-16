@@ -21,13 +21,13 @@ else:
     app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
     mongo = PyMongo(app)
     app.secret_key=os.environ.get('SECRET_KEY')
-
+    
 @app.route('/')
 # home page displays all recipes
 @app.route('/recipes', methods=['POST', 'GET'])
 def recipes():
     # check if there is a user in session then flashes
-    if 'username' in session:
+    if "username" in session:
         flash('You were successfully logged in')
     if request.method == 'POST':
         # need this variable set
@@ -242,7 +242,7 @@ def update_recipe(recipe_id):
 @app.route('/vote/<recipe_id>', methods=['GET','POST'])
 def vote(recipe_id):
     print(recipe_id)
-    if session['username']:
+    if "username" in session:
          filter = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
          voted = filter['voted']
          if not session['username'] in voted:
