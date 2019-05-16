@@ -27,11 +27,17 @@ main {
 /*}*/
 
 /*.form-centering {*/
-    /*margin: 0 auto;*/
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*transform: translate(-50%, -50%);*/
+
+/*margin: 0 auto;*/
+
+/*position: absolute;*/
+
+/*top: 50%;*/
+
+/*left: 50%;*/
+
+/*transform: translate(-50%, -50%);*/
+
 /*}*/
 
 /*filter-styles*/
@@ -93,6 +99,7 @@ main {
 
 .recipe-links {
     color: black;
+    font-size: 1.4rem;
 }
 
 .results-found {
@@ -124,7 +131,7 @@ main {
 }
 
 .description-text {
-    font-size: 1em;
+    font-size: 1.5rem;
 }
 
 .margin {
@@ -209,6 +216,10 @@ main {
 
 /*}*/
 
+.upvote {
+    font-size: 3rem;
+}
+
 .upvote:hover {
     color: #E54725;
     outline: none
@@ -255,10 +266,18 @@ main {
         transform: translate(-50%, -50%);
 
     }
-    
-    
-    
+
+    .recipe-links {
+        color: black;
+        font-size: 1rem;
+    }
+    .upvote {
+        font-size: 1.35rem;
+    }
+    .description-text {
+        font-size: 1em;
+    }
     .results-found {
-    font-size: 1.25rem;
-}
+        font-size: 1.25rem;
+    }
 }
