@@ -27,7 +27,7 @@ else:
 @app.route('/recipes', methods=['POST', 'GET'])
 def recipes():
     # check if there is a user in session then flashes
-    if "username" in session:
+    if 'username' in session:
         flash('You were successfully logged in')
     if request.method == 'POST':
         # need this variable set
