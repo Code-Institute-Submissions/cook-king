@@ -18,9 +18,9 @@ if os.environ.get('C9_HOSTNAME'):
     app.secret_key=os.environ.get('SECRET_KEY')
 else: 
     URI=os.environ.get('URI')
-app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
-mongo = PyMongo(app)
-app.secret_key=os.environ.get('SECRET_KEY')
+    app.config["MONGO_URI"]=os.environ.get('MONGO_URI')
+    mongo = PyMongo(app)
+    app.secret_key=os.environ.get('SECRET_KEY')
 
 
 
