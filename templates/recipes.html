@@ -52,7 +52,7 @@
             <h3>{{recipe.recipe_name}}</h3>
         </a>
         <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}"> 
-            <img src={{recipe.recipe_image}} onerror="this.src='https://www.sweetsquared.ie/sca-dev-kilimanjaro/img/no_image_available.jpeg?resizeid=19&resizeh=1200&resizew=1200'" class='recipe-images' /></a>
+            <img src={{recipe.recipe_image}} onerror="this.src='https://www.sweetsquared.ie/sca-dev-kilimanjaro/img/no_image_available.jpeg?resizeid=19&resizeh=1200&resizew=1200'" alt="{{recipe.recipe_name}} image" class='recipe-images' /></a>
         <div class="row">
             <div class="col-4" >
                 <a href="{{url_for('vote', recipe_id=recipe._id)}}"><i class="upvote material-icons col-4">arrow_upward</i></a> 
