@@ -6,8 +6,8 @@
             <div class="col-lg-2 col-sm-6">
                 <select name="author" class="form-control form-control-lg">
                     <option disabled selected>Filter by User</option>
-                    {% for name in users %}
-                      <option value="{{name.name}}">{{name.name}}</option>
+                    {% for user in users %}
+                      <option value="{{user.name}}">{{user.name}}</option>
                     {% endfor %}
                 </select>
             </div>
