@@ -65,9 +65,10 @@ I voted on recipes in different accounts to make sure I could only vote once on 
 I deleted recipes, to see that they actually got deleted.
 <br>
 I filtered by every filter and combination of filters, to check that they were working correctly and the count was correct.
-
+<br>
 Errors:
-Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.
+<br>
+Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.<br>
 The website says it is not secure, this is because of a security flaw with jinja, I updated to recommended jinja version but it still is marked unsafe.
 <h6>IMPORTANT: There is one glitch, the multi select jquery plugin chosen, that I use doesn't work or display on mobile, 
 as such when using developer tools you need to refresh the page so that it realises you are on mobile. This will allow it to display a normal multi-select</h6>
