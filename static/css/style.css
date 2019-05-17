@@ -2,12 +2,38 @@ a:link {
     text-decoration: none;
 }
 
+/*makes checkboxes bigger on mobile*/
+
 input[type=checkbox] {
     zoom: 2.9;
 }
 
 
 
+/*form centering*/
+
+main {
+    display: flex;
+}
+
+.form-centering {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.form-center-log {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error {
+    color: red;
+
+}
+
+/*filter-styles*/
 
 .filter-mobile-margin {
     margin-bottom: 1.5rem;
@@ -23,23 +49,25 @@ input[type=checkbox] {
     width: 80%;
 }
 
-.allergen-ingredients {
-    display: inline-block;
-
-}
-
-
-
-
-.icon-size {
-    font-size: 3rem;
-}
+/*makes filter form inline*/
 
 .form-inline {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
 }
+
+/*open recipe styles*/
+
+.allergen-ingredients {
+    display: inline-block;
+
+}
+
+.icon-size {
+    font-size: 3rem;
+}
+
 
 .ingredients-bg {
     background: #4FFF8A;
@@ -63,6 +91,11 @@ input[type=checkbox] {
 
 .recipe-links {
     color: black;
+    font-size: 1.4rem;
+}
+
+.results-found {
+    font-size: 1.75rem;
 }
 
 .top-margin {
@@ -83,37 +116,6 @@ input[type=checkbox] {
     margin-bottom: .8em;
 }
 
-/*this is for the form toggle on and off button*/
-
-/*#filter-form {*/
-
-/*display:none;*/
-
-/*display: inline-block;*/
-
-/*}*/
-
-.logo {
-    height: 55px;
-}
-
-.center-hor {
-    margin: 0 auto;
-
-}
-
-.container-recipes {
-    position: relative;
-    /*text-align: center;*/
-    /*color: white;*/
-}
-
-.recipe-images {
-    height: 20em;
-    width: 100%;
-    object-fit: cover;
-}
-
 /* open recipe page*/
 
 .author-name {
@@ -121,7 +123,7 @@ input[type=checkbox] {
 }
 
 .description-text {
-    font-size: 1em;
+    font-size: 1.5rem;
 }
 
 .margin {
@@ -137,33 +139,51 @@ input[type=checkbox] {
     font-size: 15px;
 }
 
-/*.image-open-container {*/
-
-/*    width: 100%;*/
-
-/*height: 30em;*/
-
-/*}*/
 
 .recipe-images-page {
     height: 30em;
     width: 100%;
     object-fit: cover;
-    /*height: 20em;*/
 }
+
+/*this is for the form toggle on and off button*/
+
+/*#filter-form {*/
+
+/*display:none;*/
+
+/*display: inline-block;*/
+
+/*}*/
+
+/*.logo {*/
+
+/*    height: 55px;*/
+
+/*}*/
+
+.center-hor {
+    margin: 0 auto;
+
+}
+
+.container-recipes {
+    position: relative;
+}
+
+.recipe-images {
+    height: 20em;
+    width: 100%;
+    object-fit: cover;
+}
+
+
 /* upvote button stlye*/
 
-/*.upvote {*/
-/*    background: none;*/
-/*    border: none;*/
-/*    padding: 0;*/
-/*    outline: none;*/
-/*    margin:0;*/
-/*}*/
-
-/*.upvote:onclick {*/
-/*    outline: none*/
-/*}*/
+.upvote {
+    font-size: 3rem;
+    padding: 0;
+}
 
 .upvote:hover {
     color: #E54725;
@@ -193,5 +213,31 @@ input[type=checkbox] {
 @media only screen and (min-width: 992px) {
     input[type=checkbox] {
         zoom: 1;
+    }
+    .container-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-centering {
+        margin-left: 25%;
+        margin-right: 25%;
+        width: 50%;
+        display: inline-block;
+
+    }
+    .recipe-links {
+        color: black;
+        font-size: 1rem;
+    }
+    .upvote {
+        font-size: 1.35rem;
+    }
+    .description-text {
+        font-size: 1em;
+    }
+    .results-found {
+        font-size: 1.25rem;
     }
 }

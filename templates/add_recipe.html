@@ -1,82 +1,87 @@
 {% extends 'base.html'%} {% block content %}
-<div class="center">
-    <div class="col-12">
-        <h1>Add a Recipe</h1>
+<div class="small-margin">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-center">
+                <div class="col-12">
+                    <h1>Add a Recipe</h1>
+                </div>
+                <form action="{{url_for('add_recipe')}}" method="POST" class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="rname">Recipe Name</label>
+                                <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="rname">Recipe Description</label>
+                                <textarea id="rname" name="recipe_description" class="form-control form-control-lg" cols="60" rows="5" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="cusinen">Cuisine</label>
+                            <select id="cuisinen" name="cuisine" class="form-control form-control-lg" required>
+                            <option value="" disabled selected>Choose Cuisine</option>
+                            {% for cuisine_name in cuisine %}
+                                 <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Select Allergens</label>
+                            <br> {% for allergen in allergens %}
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name={{allergen._id}} value="{{allergen.allergen_name}}">
+                                <label for=id_{{allergen.allergen_name}}>{{allergen.allergen_name}}</label>
+                            </div>{% endfor %}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Select Ingredients</label>
+                            <br>
+                            <select multiple required id="ingred-id" name='ingredients-select' class="form-control form-control-lg" data-placeholder="Begin typing find ingredients...">
+                            {% for ingredient in ingredients %}
+                            <option name='{{ingredient._id}}' value="{{ingredient._id}}">{{ingredient.ingredient}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="rinstruc">Recipe Instructions</label>
+                                <textarea id="rinstruc" name="recipe_instructions" class="form-control form-control-lg" cols="60" rows="10" required></textarea>
+                                <!--<input id="rinstruc" name="recipe_instructions" type="text" class="form-control form-control-lg" required>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="rimage">Recipe Image Link</label>
+                                <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-lg">Add Recipe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <form action="{{url_for('add_recipe')}}" method="POST" class="col-12">
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rname">Recipe Name</label>
-                    <input id="rname" name="recipe_name" type="text" class="form-control form-control-lg" required>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rname">Recipe Description</label>
-                    <textarea id="rname" name="recipe_description" class="form-control form-control-lg" cols="60" rows="5" required></textarea>
-                    <!--<input id="rname" name="recipe_description" type="text" class="form-control form-control-lg" maxlength="200" required>-->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-6">
-                <label for="cusinen">Cuisine</label>
-                <select id="cuisinen" name="cuisine" class="form-control form-control-lg" required>
-            <option value="" disabled selected>Choose Cuisine</option>
-            {% for cuisine_name in cuisine %}
-             <option value="{{cuisine_name.cuisine_name}}">{{cuisine_name.cuisine_name}}</option>
-            {% endfor %}
-            </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <label>Select Allergens</label>
-                <br> {% for allergen in allergens %}
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="id_{{allergen.allergens}}" name={{allergen._id}} value="{{allergen.allergen_name}}">
-                    <label for=id_{{allergen.allergen_name}}>{{allergen.allergen_name}}</label>
-                </div>{% endfor %}
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-6">
-                <label>Select Ingredients</label>
-                <br>
-                <select multiple required id="ingred-id" name='ingredients-select' class="form-control form-control-lg" data-placeholder="Begin typing find ingredients...">
-                {% for ingredient in ingredients %}
-                <option name='{{ingredient._id}}' value="{{ingredient._id}}">{{ingredient.ingredient}}</option>
-                {% endfor %}
-            </select>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rinstruc">Recipe Instructions</label>
-                    <textarea id="rinstruc" name="recipe_instructions" class="form-control form-control-lg" cols="60" rows="10" required></textarea>
-                    <!--<input id="rinstruc" name="recipe_instructions" type="text" class="form-control form-control-lg" required>-->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="rimage">Recipe Image Link</label>
-                    <input id="rimage" name="recipe_image" type="text" class="form-control form-control-lg" required>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-lg">Add Recipe</button>
-            </div>
-        </div>
-    </form>
 </div>
-    {% endblock %}
+{% endblock %}

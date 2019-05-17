@@ -35,13 +35,14 @@
 
     <main>
         <div class="container-fluid margin">
-            {% with messages = get_flashed_messages() %} {% if messages %}
-            <div class="flashes margin-top">
-                {% for message in messages %}
-                <h6>{{ message }}</h6>
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+            <div class=flashes>
+                {% for category, message in messages %}
+                <h6 class="{{ category }}">{{ message }}</h6>
                 {% endfor %}
             </div>
-            {% endif %} {% endwith %} {% block content %} {% endblock %}
+            {% endif %} {% endwith %} 
+            {% block content %} {% endblock %}
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -55,9 +56,9 @@
             no_results_text: "Oops, nothing found!"
         })
         // this just hides and unhides the filter forms
-        $("#hide-show-filters").click(function(){
-        $("#filter-form").toggle();
-    });
+        $("#hide-show-filters").click(function() {
+            $("#filter-form").toggle();
+        });
     </script>
 </body>
 

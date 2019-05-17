@@ -6,8 +6,8 @@
             <div class="col-lg-2 col-sm-6">
                 <select name="author" class="form-control form-control-lg">
                     <option disabled selected>Filter by User</option>
-                    {% for name in users %}
-                      <option value="{{name.name}}">{{name.name}}</option>
+                    {% for user in users %}
+                      <option value="{{user.name}}">{{user.name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -43,19 +43,27 @@
         </form>
     </div>
 </div>
+
+<span class="results-found">{{count}} results found</span>
 <div class="row">
     {% for recipe in recipes %}
     <div class="col-sm-12 col-lg-3 margin">
         <!--<div class="container-fluid">-->
         <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
-            <h5>{{recipe.recipe_name}}</h5>
+            <h3>{{recipe.recipe_name}}</h3>
         </a>
         <a href="{{url_for('open_recipe', recipe_id=recipe._id)}}"> 
-            <img src={{recipe.recipe_image}} onerror="this.src='https://www.sweetsquared.ie/sca-dev-kilimanjaro/img/no_image_available.jpeg?resizeid=19&resizeh=1200&resizew=1200'" class='recipe-images' /></a>
+            <img src={{recipe.recipe_image}} onerror="this.src='https://www.sweetsquared.ie/sca-dev-kilimanjaro/img/no_image_available.jpeg?resizeid=19&resizeh=1200&resizew=1200'" alt="{{recipe.recipe_name}} image" class='recipe-images' /></a>
         <div class="row">
-            <div class="recipe-links col-4"><a href="{{url_for('user_recipes', name=recipe.author)}}" class="recipe-links">Author: {{recipe.author}}</a></div>
+            <div class="col-4" >
+                <a href="{{url_for('vote', recipe_id=recipe._id)}}"><i class="upvote material-icons col-4">arrow_upward</i></a> 
+                <span class="upvote">{{recipe.votes}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"><a href="{{url_for('user_recipes', name=recipe.author)}}" class="recipe-links">Author: {{recipe.author}}</a></div>
             <div class="recipe-links col-4">Cuisine: {{recipe.cuisine}}</div>
-            <a href="{{url_for('vote', recipe_id=recipe._id)}}"><i class="upvote material-icons col-4">arrow_upward</i></a> {{recipe.votes}}
+
         </div>
         <form href="{{url_for('open_recipe', recipe_id=recipe._id)}}" class="recipe-links">
             <div class="description-text">{{recipe.recipe_description|truncate(100)}}
