@@ -50,7 +50,8 @@ as such when using developer tools you need to refresh the page so that it reali
 <li>Material Icons</li>
 <li>JQuery</li> 
 <a href="https://harvesthq.github.io/chosen/" target="_blank"><li>Chosen multi-select plugin</li></a>
-</ul></li> </ul>
+<li> Github : multiple branches and pull requests were used</li>
+</ul>
 
 <h2>Testing</h2> 
 I tested this project manually using developer tools and various devices.
@@ -67,6 +68,7 @@ I filtered by every filter and combination of filters, to check that they were w
 
 Errors:
 Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.
+The website says it is not secure, this is because of a security flaw with jinja, I updated to recommended jinja version but it still is marked unsafe.
 <h6>IMPORTANT: There is one glitch, the multi select jquery plugin chosen, that I use doesn't work or display on mobile, 
 as such when using developer tools you need to refresh the page so that it realises you are on mobile. This will allow it to display a normal multi-select</h6>
 <h2>Accessibility</h2>
