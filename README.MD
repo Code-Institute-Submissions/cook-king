@@ -71,7 +71,8 @@ I sent the deployment link to other students to afford the chance to make their 
 <h2>Errors:</h2>
 <br>
 Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.<br>
-The website says it is not secure, this is because of a security flaw with jinja, I updated to recommended jinja version but it still is marked unsafe.
+The website says it is not secure, this is because of a security flaw with jinja, I updated to recommended jinja version but it still is marked unsafe.<br>
+If you log out sometimes the "you need to log in to vote" flash doesnt show up, however you still can't vote, as such it still works.<br>
 <h6>IMPORTANT: There is one glitch, the multi select jquery plugin chosen, that I use doesn't work or display on mobile, 
 as such when using developer tools you need to refresh the page so that it realises you are on mobile. This will allow it to display a normal multi-select</h6>
 <h2>Accessibility</h2>
