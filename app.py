@@ -34,13 +34,10 @@ def recipes():
         filter_allergen = ''
         # pulling data out as a dict
         filter_by = request.form.to_dict()
-        print('full', filter_by)
-        # print('before try',filter_by)
         try:
             #filter_allergen = filter_by['allergen']
             # getting allergens as a list
             filter_allergen = request.form.getlist('allergens')
-            print('Here i am',filter_allergen)
             
             #removing allergens from filter_by
             del(filter_by['allergens'])
@@ -52,9 +49,6 @@ def recipes():
         # if no results
         if count == 0: 
             count="There are no"
-        print("HERE IT IS", count)
-        #print(list(recipes))
-        # recipes=mongo.db.recipes.find()
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
         cuisine=mongo.db.cuisine.find()
@@ -75,9 +69,6 @@ def recipes():
         users=mongo.db.users.find()
         allergens=mongo.db.allergens.find()
         cuisine=mongo.db.cuisine.find()
-        print(recipes)
-        # import pdb; pdb.set_trace()
-        print(users)
         return render_template("recipes.html", 
                                recipes=recipes,
                                users=users,
@@ -134,12 +125,8 @@ def add_recipe():
     if request.method == 'POST':
         new_recipe = {'author': session['username'], 'votes': 0, 'voted': []}
         recipe_allergens = []
-        # ingredients = []
         recipe=request.form
-        # import pdb; pdb.set_trace()
-        print(recipe)
         for key in recipe:
-            print(key, request.form[key])
             if key in ['recipe_description','recipe_name','cuisine','recipe_instructions','recipe_image']:
                 new_recipe[key]=request.form[key]
             elif key in ['5cb78b681c9d440000423101', '5cb78b841c9d440000423102', '5cb78b9c1c9d440000423103', '5cb78baa1c9d440000423104', '5cb78bb41c9d440000423105', '5cb78bbf1c9d440000423106', '5cb78bc91c9d440000423107', '5cb78bdc1c9d440000423108', '5cb78be71c9d440000423109', '5cb78bf31c9d44000042310a', '5cb78bfe1c9d44000042310b', '5cb78c081c9d44000042310c', '5cb78c141c9d44000042310d', '5cb78c211c9d44000042310e']:
@@ -148,12 +135,11 @@ def add_recipe():
             else:
                 ingredients=request.form.getlist('ingredients-select')
                 
-        # print('ingredients',recipe_ingredients)
+        
 		# Then recipe_allergens is added to the new_recipe dict
         new_recipe['allergens']=recipe_allergens
         new_recipe['ingredients']=ingredients
-        # import pdb; pdb.set_trace()
-        print(new_recipe)
+        
 		# Then for your insert just pass in new_recipe
         recipes.insert_one(new_recipe)
         flash("Recipe successfully added")
@@ -161,7 +147,6 @@ def add_recipe():
     else:
         allergens = mongo.db.allergens.find()
         ingredients = mongo.db.ingredients.find()
-        print(ingredients)
         return render_template('add_recipe.html',
                                 cuisine=mongo.db.cuisine.find(),
                                 allergens = allergens,
@@ -172,7 +157,6 @@ def open_recipe(recipe_id):
     the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     recipe_allergens = []
     recipe_ingredients = []
-    # import pdb; pdb.set_trace()
     for ingredient_id in the_recipe["ingredients"]:
         recipe_ingredients.append(mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)}))
     for allergen_id in  the_recipe["allergens"]:
@@ -205,18 +189,13 @@ def edit_recipe(recipe_id):
 # update recipes
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    # recipe = mongo.db.recipes
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     if request.method == 'POST':
 		# This is going to be passed into mongo
         new_recipe = {'author': session['username'], "votes": recipe["votes"], "voted": recipe["voted"]}
         recipe_allergens = []
-        # ingredients = []
         recipe=request.form
-        # import pdb; pdb.set_trace()
-        print(recipe)
         for key in recipe:
-            print(key, request.form[key])
             if key in ['recipe_description','recipe_name','cuisine','recipe_instructions','recipe_image']:
                 new_recipe[key]=request.form[key]
             elif key in ['5cb78b681c9d440000423101', '5cb78b841c9d440000423102', '5cb78b9c1c9d440000423103', '5cb78baa1c9d440000423104', '5cb78bb41c9d440000423105', '5cb78bbf1c9d440000423106', '5cb78bc91c9d440000423107', '5cb78bdc1c9d440000423108', '5cb78be71c9d440000423109', '5cb78bf31c9d44000042310a', '5cb78bfe1c9d44000042310b', '5cb78c081c9d44000042310c', '5cb78c141c9d44000042310d', '5cb78c211c9d44000042310e']:
@@ -225,13 +204,13 @@ def update_recipe(recipe_id):
             else:
                 ingredients=request.form.getlist('ingredients-select')
                 
-        # print('ingredients',recipe_ingredients)
+    
 		# Then recipe_allergens is added to the new_recipe dict
         new_recipe['allergens']=recipe_allergens
         new_recipe['ingredients']=ingredients
 		# Then recipe_allergens is added to the new_recipe dict
         new_recipe['allergens']=recipe_allergens
-        print(new_recipe)
+        
         # pushes the edit to database
         mongo.db.recipes.update( {'_id': ObjectId(recipe_id)}, new_recipe)
     flash('Recipe succesfully edited')
@@ -241,7 +220,6 @@ def update_recipe(recipe_id):
 # upvotes
 @app.route('/vote/<recipe_id>', methods=['GET','POST'])
 def vote(recipe_id):
-    print(recipe_id)
     if "username" in session:
          filter = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
          voted = filter['voted']

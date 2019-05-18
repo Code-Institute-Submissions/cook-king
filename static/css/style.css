@@ -37,11 +37,7 @@ main {
 
 .filter-mobile-margin {
     margin-bottom: 1.5rem;
-    /*margin-left:1.5;*/
     margin-top: 1.5rem;
-    /*margin: 2rem;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
 }
 
 .filter-center {
@@ -82,7 +78,6 @@ main {
 .allergens-bg {
     background: #FFA349;
     border-radius: 25px;
-    /*width: 8em;*/
     width: 100%;
     text-align: center;
     display: inline-block;
@@ -146,21 +141,6 @@ main {
     object-fit: cover;
 }
 
-/*this is for the form toggle on and off button*/
-
-/*#filter-form {*/
-
-/*display:none;*/
-
-/*display: inline-block;*/
-
-/*}*/
-
-/*.logo {*/
-
-/*    height: 55px;*/
-
-/*}*/
 
 .center-hor {
     margin: 0 auto;
