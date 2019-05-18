@@ -66,7 +66,9 @@ I deleted recipes, to see that they actually got deleted.
 <br>
 I filtered by every filter and combination of filters, to check that they were working correctly and the count was correct.
 <br>
-Errors:
+I sent the deployment link to other students to afford the chance to make their own recipes and accounts.
+<br>
+<h2>Errors:</h2>
 <br>
 Recipes don't keep their ingredients, allergens or cuisine when editing, they need to be added again.<br>
 The website says it is not secure, this is because of a security flaw with jinja, I updated to recommended jinja version but it still is marked unsafe.
